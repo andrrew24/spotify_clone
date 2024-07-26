@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
+import 'package:go_router/go_router.dart';
+import 'package:spotify_clone/common/widgets/basic_app_button.dart';
 import 'package:spotify_clone/core/config/assets/app_styles.dart';
 import 'package:spotify_clone/core/config/assets/images.dart';
 import 'package:spotify_clone/core/config/assets/vectors.dart';
+import 'package:spotify_clone/core/constants/const.dart';
 
 class GetStartedPage extends StatelessWidget {
   const GetStartedPage({super.key});
@@ -12,7 +15,8 @@ class GetStartedPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        padding: const EdgeInsets.only(top: 45,bottom: 30,right: 30,left: 30),
+        padding:
+            const EdgeInsets.only(top: 45, bottom: 50, right: 30, left: 30),
         decoration: const BoxDecoration(
           image: DecorationImage(
             fit: BoxFit.fill,
@@ -35,8 +39,11 @@ class GetStartedPage extends StatelessWidget {
               textAlign: TextAlign.center,
             ),
             const Gap(30),
-            ElevatedButton(
-              onPressed: (){}, child: const Text("Get Started"))
+            BasicAppButton(
+                title: "Get Started",
+                onPressed: () {
+                  GoRouter.of(context).push(kchooseMode);
+                })
           ],
         ),
       ),
