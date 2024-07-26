@@ -45,7 +45,7 @@ abstract class AppStyles {
   }
   static TextStyle styleBold22() {
     return const TextStyle(
-      color:Colors.white,
+      color:Colors.white  ,
       fontFamily: 'Satoshi',
       fontSize: 22,
       fontWeight: FontWeight.bold

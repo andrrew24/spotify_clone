@@ -20,7 +20,6 @@ class AppTheme {
       scaffoldBackgroundColor: AppColors.darkBackground,
       elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(
-              padding: const EdgeInsets.symmetric(vertical: 30,horizontal: 100),
               backgroundColor: AppColors.primaryColor,
               textStyle: AppStyles.styleBold22(),
               shape: RoundedRectangleBorder(

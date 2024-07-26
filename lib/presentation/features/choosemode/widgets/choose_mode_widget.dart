@@ -1,10 +1,12 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 import 'package:spotify_clone/core/config/assets/vectors.dart';
 import 'package:spotify_clone/core/config/theme/app_colors.dart';
+import 'package:spotify_clone/presentation/features/choosemode/manager/cubit/theme_cubit.dart';
 
 class ChooseModeWidget extends StatefulWidget {
   const ChooseModeWidget({
@@ -16,7 +18,7 @@ class ChooseModeWidget extends StatefulWidget {
 }
 
 class _ChooseModeWidgetState extends State<ChooseModeWidget> {
-  int activeOption = 0;
+  int activeOption = 1;
 
   void changeIndex(index) {
     setState(() {
@@ -26,21 +28,25 @@ class _ChooseModeWidgetState extends State<ChooseModeWidget> {
 
   @override
   Widget build(BuildContext context) {
+    final themeCubit = context.read<ThemeCubit>();
+
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         GestureDetector(
           onTap: () {
             changeIndex(0);
+            themeCubit.switchToDarkMode();
           },
           child: ChooseModeOption(
               iconName: AssetsVectors.vectorsMoon,
               isSelected: activeOption == 0),
         ),
-        Gap(50),
+        const Gap(50),
         GestureDetector(
           onTap: () {
             changeIndex(1);
+            themeCubit.switchToLightMode();
           },
           child: ChooseModeOption(
               iconName: AssetsVectors.vectorsSun,
