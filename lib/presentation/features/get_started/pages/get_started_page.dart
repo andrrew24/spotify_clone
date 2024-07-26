@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:gap/gap.dart';
+import 'package:spotify_clone/core/config/assets/app_styles.dart';
 import 'package:spotify_clone/core/config/assets/images.dart';
 import 'package:spotify_clone/core/config/assets/vectors.dart';
 
@@ -11,6 +12,7 @@ class GetStartedPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
+        padding: const EdgeInsets.only(top: 45,bottom: 30,right: 30,left: 30),
         decoration: const BoxDecoration(
           image: DecorationImage(
             fit: BoxFit.fill,
@@ -18,10 +20,23 @@ class GetStartedPage extends StatelessWidget {
           ),
         ),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             SvgPicture.asset(AssetsVectors.vectorsSpotifyLogo),
-            Spacer(),
-            Text("Enjoy Listening To Music")
+            const Spacer(),
+            Text(
+              "Enjoy Listening To Music",
+              style: AppStyles.styleBold25(),
+            ),
+            const Gap(30),
+            Text(
+              "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sagittis enim purus sed phasellus. Cursus ornare id scelerisque aliquam.",
+              style: AppStyles.styleRegular17(),
+              textAlign: TextAlign.center,
+            ),
+            const Gap(30),
+            ElevatedButton(
+              onPressed: (){}, child: const Text("Get Started"))
           ],
         ),
       ),
