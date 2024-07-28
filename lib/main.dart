@@ -17,6 +17,7 @@ class MyApp extends StatelessWidget {
       child: BlocBuilder<ThemeCubit, ThemeState>(
         builder: (context, state) {
           return MaterialApp.router(
+            debugShowCheckedModeBanner: false,
             routerConfig: appRouter,
             title: 'Flutter Demo',
             theme: state == ThemeState.light

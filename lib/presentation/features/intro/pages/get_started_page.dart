@@ -30,12 +30,12 @@ class GetStartedPage extends StatelessWidget {
             const Spacer(),
             Text(
               "Enjoy Listening To Music",
-              style: AppStyles.styleBold25(),
+              style: AppStyles.styleBold25().copyWith(color: Colors.white),
             ),
             const Gap(30),
             Text(
               "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sagittis enim purus sed phasellus. Cursus ornare id scelerisque aliquam.",
-              style: AppStyles.styleRegular17(),
+              style: AppStyles.styleRegular17().copyWith(color: Colors.white),
               textAlign: TextAlign.center,
             ),
             const Gap(30),

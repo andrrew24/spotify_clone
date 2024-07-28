@@ -4,24 +4,39 @@ import 'package:spotify_clone/core/config/theme/app_colors.dart';
 
 class AppTheme {
   static final lightTheme = ThemeData(
-      brightness: Brightness.light,
-      primaryColor: AppColors.primaryColor,
-      scaffoldBackgroundColor: AppColors.lightBackground,
-      elevatedButtonTheme: ElevatedButtonThemeData(
-          style: ElevatedButton.styleFrom(
-              backgroundColor: AppColors.primaryColor,
-              textStyle: AppStyles.styleBold22(),
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(30)))));
+    brightness: Brightness.light,
+    primaryColor: AppColors.primaryColor,
+    textButtonTheme: TextButtonThemeData(
+      style: ButtonStyle(
+        textStyle: WidgetStatePropertyAll(
+          AppStyles.styleMedium19()
+              .copyWith(color: Colors.white, fontWeight: FontWeight.bold),
+        ),
+      ),
+    ),
+    elevatedButtonTheme: ElevatedButtonThemeData(
+      style: ElevatedButton.styleFrom(
+        backgroundColor: AppColors.primaryColor,
+        textStyle: AppStyles.styleBold22().copyWith(color: Colors.pink),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(30),
+        ),
+      ),
+    ),
+  );
 
   static final darkTheme = ThemeData(
-      brightness: Brightness.dark,
-      primaryColor: AppColors.primaryColor,
-      scaffoldBackgroundColor: AppColors.darkBackground,
-      elevatedButtonTheme: ElevatedButtonThemeData(
-          style: ElevatedButton.styleFrom(
-              backgroundColor: AppColors.primaryColor,
-              textStyle: AppStyles.styleBold22(),
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(30)))));
+    brightness: Brightness.dark,
+    primaryColor: AppColors.primaryColor,
+    scaffoldBackgroundColor: AppColors.darkBackground,
+    elevatedButtonTheme: ElevatedButtonThemeData(
+      style: ElevatedButton.styleFrom(
+        backgroundColor: AppColors.primaryColor,
+        textStyle: AppStyles.styleBold22(),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(30),
+        ),
+      ),
+    ),
+  );
 }

@@ -18,7 +18,7 @@ class ChooseModeWidget extends StatefulWidget {
 }
 
 class _ChooseModeWidgetState extends State<ChooseModeWidget> {
-  int activeOption = 1;
+  late int activeOption;
 
   void changeIndex(index) {
     setState(() {
@@ -29,7 +29,7 @@ class _ChooseModeWidgetState extends State<ChooseModeWidget> {
   @override
   Widget build(BuildContext context) {
     final themeCubit = context.read<ThemeCubit>();
-
+    activeOption = themeCubit.state == ThemeState.dark ? 0 : 1;
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
