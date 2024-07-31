@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 import 'package:spotify_clone/core/config/assets/app_styles.dart';
+import 'package:spotify_clone/core/config/assets/vectors.dart';
 import 'package:spotify_clone/core/config/theme/app_colors.dart';
 import 'package:spotify_clone/core/constants/const.dart';
 import 'package:spotify_clone/presentation/features/authentication/widgets/signin_form.dart';
-import 'package:spotify_clone/presentation/features/authentication/widgets/signin_register_app_bar.dart';
+import 'package:spotify_clone/core/widgets/basic_appbar.dart';
 
 class SignInPage extends StatelessWidget {
   const SignInPage({super.key});
@@ -13,11 +15,17 @@ class SignInPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: BasicAppBar(
+        title: SvgPicture.asset(
+          AssetsVectors.vectorsSpotifyLogo,
+          height: 30,
+          width: 30,
+        ),
+      ),
       body: Padding(
         padding: const EdgeInsets.all(40),
         child: Column(
           children: [
-            const SigninRegisterAppBar(),
             const Gap(50),
             Text(
               "Sign in",
