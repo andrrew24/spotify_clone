@@ -17,7 +17,7 @@ class RegisterOrSignupPage extends StatelessWidget {
     return Scaffold(
       body: Stack(
         children: [
-          BasicAppBar(),
+          const BasicAppBar(),
           Align(
             alignment: Alignment.topRight,
             child: SvgPicture.asset(AssetsVectors.vectorsTopPattern),
