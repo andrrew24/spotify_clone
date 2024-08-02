@@ -1,7 +1,10 @@
+import 'dart:developer';
+
 import 'package:dartz/dartz.dart';
 import 'package:pocketbase/pocketbase.dart';
 import 'package:spotify_clone/core/errors/failure.dart';
 import 'package:spotify_clone/data/models/auth/create_user_model.dart';
+import 'package:spotify_clone/data/models/auth/signin_user_model.dart';
 import 'package:spotify_clone/data/sources/auth/auth_remote_data_source.dart';
 import 'package:spotify_clone/domain/repos/auth/auth_repo.dart';
 
@@ -11,20 +14,25 @@ class AuthRepoImpl implements AuthRepo {
   AuthRepoImpl({required this.authRemoteDataSource});
 
   @override
-  Future<Either> signin() {
-    // TODO: implement signin
-    throw UnimplementedError();
+  Future<Either<Failure, String>> register(CreateUserModel model) async {
+    try {
+      await authRemoteDataSource.register(model);
+      return const Right("Register Success");
+    } on ClientException catch (e) {
+      log("triggered fail");
+      log(ServerFailure.fromPocketBase(e).errorMessage);
+      return Left(ServerFailure.fromPocketBase(e));
+    }
   }
 
   @override
-  Future<Either> register(CreateUserModel model) async {
+  Future<Either<Failure, String>> signin(SigninUserModel model) async {
     try {
-      var result = await authRemoteDataSource.register(model);
-
-      print(result);
-
-      return const Right("Register Success");
+      await authRemoteDataSource.signin(model);
+      return const Right("Login Success");
     } on ClientException catch (e) {
+      log("triggered fail");
+      log(ServerFailure.fromPocketBase(e).errorMessage);
       return Left(ServerFailure.fromPocketBase(e));
     }
   }

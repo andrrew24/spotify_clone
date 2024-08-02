@@ -22,52 +22,54 @@ class SignInPage extends StatelessWidget {
           width: 30,
         ),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(40),
-        child: Column(
-          children: [
-            const Gap(50),
-            Text(
-              "Sign in",
-              style: AppStyles.styleBold30(),
-            ),
-            const Gap(22),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  "If you need any support ",
-                  style: AppStyles.styleRegular12(),
-                ),
-                GestureDetector(
-                  onTap: () {},
-                  child: Text(
-                    "Click here",
-                    style: AppStyles.styleRegular12()
-                        .copyWith(color: AppColors.primaryColor),
+      body: SafeArea(
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.all(40),
+          child: Column(
+            children: [
+              const Gap(50),
+              Text(
+                "Sign in",
+                style: AppStyles.styleBold30(),
+              ),
+              const Gap(22),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    "If you need any support ",
+                    style: AppStyles.styleRegular12(),
                   ),
-                ),
-              ],
-            ),
-            const Gap(30),
-            const SigninForm(),
-            const Spacer(),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const Text("Not A Member ?"),
-                TextButton(
-                    onPressed: () {
-                      GoRouter.of(context).pushReplacement(kRegisterPage);
-                    },
+                  GestureDetector(
+                    onTap: () {},
                     child: Text(
-                      "Register Now",
-                      style: AppStyles.styleMedium14()
-                          .copyWith(color: Colors.blue),
-                    ))
-              ],
-            )
-          ],
+                      "Click here",
+                      style: AppStyles.styleRegular12()
+                          .copyWith(color: AppColors.primaryColor),
+                    ),
+                  ),
+                ],
+              ),
+              const Gap(30),
+              const SigninForm(),
+              const Gap(20),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text("Not A Member ?"),
+                  TextButton(
+                      onPressed: () {
+                        GoRouter.of(context).pushReplacement(kRegisterPage);
+                      },
+                      child: Text(
+                        "Register Now",
+                        style: AppStyles.styleMedium14()
+                            .copyWith(color: Colors.blue),
+                      ))
+                ],
+              )
+            ],
+          ),
         ),
       ),
     );

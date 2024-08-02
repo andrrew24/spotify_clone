@@ -5,6 +5,7 @@ import 'package:spotify_clone/presentation/features/authentication/pages/registe
 import 'package:spotify_clone/presentation/features/authentication/pages/register_page.dart';
 import 'package:spotify_clone/presentation/features/authentication/pages/sign_in_page.dart';
 import 'package:spotify_clone/presentation/features/choosemode/pages/choose_mode_page.dart';
+import 'package:spotify_clone/presentation/features/home/pages/home_page.dart';
 import 'package:spotify_clone/presentation/features/intro/pages/get_started_page.dart';
 import 'package:spotify_clone/presentation/features/splash/pages/splash_page.dart';
 
@@ -44,6 +45,12 @@ final GoRouter appRouter = GoRouter(
       path: kRegisterPage,
       builder: (BuildContext context, GoRouterState state) {
         return const RegisterPage();
+      },
+    ),
+    GoRoute(
+      path: kHomePage,
+      builder: (BuildContext context, GoRouterState state) {
+        return const HomePage();
       },
     ),
   ],

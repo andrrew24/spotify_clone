@@ -2,14 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
-import 'package:spotify_clone/common/helper/service_locator.dart';
-import 'package:spotify_clone/common/widgets/basic_app_button.dart';
 import 'package:spotify_clone/core/config/assets/app_styles.dart';
 import 'package:spotify_clone/core/config/assets/vectors.dart';
 import 'package:spotify_clone/core/config/theme/app_colors.dart';
 import 'package:spotify_clone/core/constants/const.dart';
-import 'package:spotify_clone/data/models/auth/create_user_model.dart';
-import 'package:spotify_clone/domain/usecases/auth/register_usecase.dart';
 import 'package:spotify_clone/presentation/features/authentication/widgets/register_form.dart';
 import 'package:spotify_clone/core/widgets/basic_appbar.dart';
 
@@ -26,41 +22,42 @@ class RegisterPage extends StatelessWidget {
           width: 30,
         ),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(40),
-        child: Column(
-          children: [
-            const Gap(50),
-            Text(
-              "Register",
-              style: AppStyles.styleBold30(),
-            ),
-            const Gap(22),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  "If you need any support ",
-                  style: AppStyles.styleRegular12(),
-                ),
-                GestureDetector(
-                  onTap: () {},
-                  child: Text(
-                    "Click here",
-                    style: AppStyles.styleRegular12()
-                        .copyWith(color: AppColors.primaryColor),
+      body: SafeArea(
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.all(40),
+          child: Column(
+            children: [
+              const Gap(50),
+              Text(
+                "Register",
+                style: AppStyles.styleBold30(),
+              ),
+              const Gap(22),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    "If you need any support ",
+                    style: AppStyles.styleRegular12(),
                   ),
-                ),
-              ],
-            ),
-            const Gap(25),
-            RegisterForm(),
-            const Spacer(),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const Text("Do You Have An Account ?"),
-                TextButton(
+                  GestureDetector(
+                    onTap: () {},
+                    child: Text(
+                      "Click here",
+                      style: AppStyles.styleRegular12()
+                          .copyWith(color: AppColors.primaryColor),
+                    ),
+                  ),
+                ],
+              ),
+              const Gap(25),
+              const RegisterForm(),
+              const Gap(20),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text("Do You Have An Account ?"),
+                  TextButton(
                     onPressed: () {
                       GoRouter.of(context).pushReplacement(kSignInPage);
                     },
@@ -68,10 +65,12 @@ class RegisterPage extends StatelessWidget {
                       "Sign in",
                       style: AppStyles.styleMedium14()
                           .copyWith(color: Colors.blue),
-                    ))
-              ],
-            )
-          ],
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );
