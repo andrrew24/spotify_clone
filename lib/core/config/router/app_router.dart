@@ -14,7 +14,7 @@ final GoRouter appRouter = GoRouter(
     GoRoute(
       path: kSplash,
       builder: (BuildContext context, GoRouterState state) {
-        return const SplashPage();
+        return const HomePage();
       },
     ),
     GoRoute(

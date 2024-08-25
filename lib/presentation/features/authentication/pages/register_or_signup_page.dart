@@ -17,7 +17,13 @@ class RegisterOrSignupPage extends StatelessWidget {
     return Scaffold(
       body: Stack(
         children: [
-          const BasicAppBar(),
+          BasicAppBar(
+            leadingonPressed: () {
+              GoRouter.of(context).pop();
+            },
+            hasBG: true,
+            leadinIcon: Icons.arrow_back_ios_new_rounded,
+          ),
           Align(
             alignment: Alignment.topRight,
             child: SvgPicture.asset(AssetsVectors.vectorsTopPattern),

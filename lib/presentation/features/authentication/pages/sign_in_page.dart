@@ -16,6 +16,11 @@ class SignInPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: BasicAppBar(
+        leadingonPressed: () {
+          GoRouter.of(context).pop();
+        },
+        hasBG: true,
+        leadinIcon: Icons.arrow_back_ios_new_rounded,
         title: SvgPicture.asset(
           AssetsVectors.vectorsSpotifyLogo,
           height: 30,

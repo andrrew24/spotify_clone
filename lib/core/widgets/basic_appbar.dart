@@ -7,30 +7,48 @@ class BasicAppBar extends StatelessWidget implements PreferredSizeWidget {
   const BasicAppBar({
     super.key,
     this.title,
+    required this.leadinIcon,
+    required this.hasBG,
+    required this.leadingonPressed,
+    this.trailingIcon,
+    this.trailingonPressed,
   });
 
   final Widget? title;
+  final IconData leadinIcon;
+  final IconData? trailingIcon;
+  final bool hasBG;
+  final void Function() leadingonPressed;
+  final void Function()? trailingonPressed;
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
+      actions: [
+        trailingIcon == null
+            ? SizedBox()
+            : IconButton(
+                onPressed: trailingonPressed,
+                icon: Icon(
+                  trailingIcon,
+                  size: 20,
+                ))
+      ],
       backgroundColor: Colors.transparent,
       centerTitle: true,
       elevation: 0,
       leading: IconButton(
-        onPressed: () {
-          GoRouter.of(context).pop();
-        },
+        onPressed: leadingonPressed,
         splashRadius: 1,
         icon: Container(
           height: 40,
           width: 40,
           decoration: BoxDecoration(
-            color: Colors.white.withOpacity(0.03),
+            color: hasBG ? Colors.white.withOpacity(0.03) : Colors.transparent,
             shape: BoxShape.circle,
           ),
           child: Icon(
-            Icons.arrow_back_ios_new_rounded,
+            leadinIcon,
             size: 15,
             color:
                 BlocProvider.of<ThemeCubit>(context).state == ThemeState.light

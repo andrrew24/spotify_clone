@@ -9,9 +9,7 @@ abstract class Failure {
 class ServerFailure extends Failure {
   ServerFailure({required super.errorMessage});
 
-  // Factory constructor to create a ServerFailure from a ClientException
   factory ServerFailure.fromPocketBase(ClientException error) {
-    // You can add more detailed handling here based on the status code
     String errorMessage;
 
     switch (error.statusCode) {
@@ -22,7 +20,8 @@ class ServerFailure extends Failure {
         errorMessage = 'Unauthorized. Please check your credentials.';
         break;
       case 403:
-        errorMessage = 'Forbidden. You do not have permission to perform this action.';
+        errorMessage =
+            'Forbidden. You do not have permission to perform this action.';
         break;
       case 404:
         errorMessage = 'Not found. The requested resource was not found.';
@@ -32,6 +31,7 @@ class ServerFailure extends Failure {
         break;
       default:
         errorMessage = 'An unknown error occurred. Please try again.';
+        print(error);
         break;
     }
 
