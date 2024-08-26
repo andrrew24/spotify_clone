@@ -9,7 +9,7 @@ class RegisterUsecase implements Usecase<Either, CreateUserModel> {
 
   RegisterUsecase({required this.authRepo});
   @override
-  Future<Either<Failure, String>> call({CreateUserModel? params}) async {
+  Future<Either> call({CreateUserModel? params}) async {
     return await authRepo.register(params!);
   }
 }
