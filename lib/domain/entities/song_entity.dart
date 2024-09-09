@@ -4,6 +4,9 @@ class SongEntity {
   final num duration;
   final DateTime releaseDate;
 
-  SongEntity({required this.title, required this.artist, required this.duration, required this.releaseDate});
-  
+  SongEntity(
+      {required this.title,
+      required this.artist,
+      required this.duration,
+      required this.releaseDate});
 }

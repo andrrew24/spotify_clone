@@ -1,7 +1,9 @@
+import 'dart:developer';
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:pocketbase/pocketbase.dart';
-import 'package:spotify_clone/data/models/songs/song_model.dart';
+import 'package:spotify_clone/common/helper/service_locator.dart';
+import 'package:spotify_clone/data/models/songs/song.dart';
 import 'package:spotify_clone/domain/entities/song_entity.dart';
 
 abstract class SongRemoteDataSource {
@@ -20,13 +22,14 @@ class SongRemoteDataSourceImpl extends SongRemoteDataSource {
           await pb.collection('songs').getFullList(sort: '-releaseDate');
 
       for (var record in body) {
-        var songModel = SongModel.fromJson(record.data);
+        var songModel = Song.fromJson(record.data);
         songs.add(songModel.toEntity());
       }
-
       return Right(songs);
     } on ClientException catch (e) {
-      return left(e);
+      return left(e.toString());
     }
   }
 }
+
+

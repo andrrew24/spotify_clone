@@ -28,7 +28,7 @@ class RegisterCubit extends Cubit<RegisterState> {
           emit(RegisterSuccess());
         },
       );
-    }on ClientException catch (e) {
+    } on ClientException catch (e) {
       log('RegisterFailure emitted with exception: $e');
       emit(RegisterFailure(errorMessage: e.toString()));
     }

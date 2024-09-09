@@ -8,4 +8,10 @@ class SimpleBlocObserver extends BlocObserver {
     log(change.toString());
     super.onChange(bloc, change);
   }
+
+  @override
+  void onCreate(BlocBase bloc) {
+    log(bloc.toString());
+    super.onCreate(bloc);
+  }
 }

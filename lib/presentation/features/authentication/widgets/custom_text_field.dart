@@ -6,12 +6,12 @@ class CustomTextField extends StatelessWidget {
   const CustomTextField({
     super.key,
     required this.hintText,
-    required this.controller, required this.validator,
+    required this.controller, this.validator,
   });
 
   final String hintText;
   final TextEditingController controller;
-  final String? Function(String?) validator;
+  final String? Function(String?)? validator;
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +21,8 @@ class CustomTextField extends StatelessWidget {
       cursorColor: AppColors.primaryColor,
       decoration: InputDecoration(
         hintText: hintText,
-        contentPadding: const EdgeInsets.symmetric(horizontal: 25, vertical: 30),
+        contentPadding:
+            const EdgeInsets.symmetric(horizontal: 25, vertical: 30),
         hintStyle: AppStyles.styleBold16(),
         focusedBorder: OutlineInputBorder(
           borderSide: const BorderSide(color: AppColors.primaryColor),

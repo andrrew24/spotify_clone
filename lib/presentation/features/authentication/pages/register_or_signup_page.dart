@@ -1,13 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
+import 'package:spotify_clone/common/helper/service_locator.dart';
 import 'package:spotify_clone/common/widgets/button/basic_app_button.dart';
 import 'package:spotify_clone/core/config/assets/app_styles.dart';
 import 'package:spotify_clone/core/config/assets/images.dart';
 import 'package:spotify_clone/core/config/assets/vectors.dart';
 import 'package:spotify_clone/core/constants/const.dart';
 import 'package:spotify_clone/core/widgets/basic_appbar.dart';
+import 'package:spotify_clone/domain/usecases/auth/login_usecase.dart';
+import 'package:spotify_clone/domain/usecases/auth/register_usecase.dart';
+import 'package:spotify_clone/presentation/features/authentication/manager/login/cubit/login_cubit.dart';
+import 'package:spotify_clone/presentation/features/authentication/manager/register/cubit/register_cubit.dart';
 
 class RegisterOrSignupPage extends StatelessWidget {
   const RegisterOrSignupPage({super.key});

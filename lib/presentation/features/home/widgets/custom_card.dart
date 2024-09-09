@@ -42,20 +42,20 @@ class CustomCard extends StatelessWidget {
                     "New album",
                     style: AppStyles.styleRegular12(),
                   ),
-                  Gap(5),
+                  const Gap(5),
                   ConstrainedBox(
-                    constraints: BoxConstraints(maxWidth: 150),
+                    constraints: const BoxConstraints(maxWidth: 150),
                     child: Text(
                       "Happier Than Ever",
                       style: AppStyles.styleMedium19(),
                     ),
                   ),
-                  Gap(5),
+                  const Gap(5),
                   Text(
                     "Billie Eilish",
                     style: AppStyles.styleBold13(),
                   ),
-                  Gap(5),
+                  const Gap(5),
                 ],
               ),
             )

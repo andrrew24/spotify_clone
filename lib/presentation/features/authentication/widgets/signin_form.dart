@@ -2,15 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
+import 'package:pocketbase/pocketbase.dart';
 import 'package:spotify_clone/common/functions/fuctions.dart';
+import 'package:spotify_clone/common/helper/service_locator.dart';
 import 'package:spotify_clone/common/widgets/button/basic_app_button.dart';
 import 'package:spotify_clone/common/widgets/snackbar/custom_snack_bar.dart';
 import 'package:spotify_clone/core/config/assets/app_styles.dart';
 import 'package:spotify_clone/core/config/theme/app_colors.dart';
 import 'package:spotify_clone/core/constants/const.dart';
 import 'package:spotify_clone/data/models/auth/signin_user_model.dart';
+import 'package:spotify_clone/data/sources/song/song_remote_data_source.dart';
 import 'package:spotify_clone/presentation/features/authentication/manager/login/cubit/login_cubit.dart';
 import 'package:spotify_clone/presentation/features/authentication/widgets/custom_text_field.dart';
+import 'package:spotify_clone/presentation/features/home/manager/cubit/get_new_songs_cubit.dart';
 
 class SigninForm extends StatefulWidget {
   const SigninForm({
@@ -41,9 +45,8 @@ class _SigninFormState extends State<SigninForm> {
         }
         if (state is LoginSuccess) {
           isLoading = false;
-          ScaffoldMessenger.of(context)
-              .showSnackBar(buildSnackBar("Success", "Register success"));
-
+          // ScaffoldMessenger.of(context)
+          //     .showSnackBar(buildSnackBar("Success", "Register success"));
           GoRouter.of(context).pushReplacement(kHomePage);
         }
       },
@@ -56,13 +59,13 @@ class _SigninFormState extends State<SigninForm> {
               CustomTextField(
                 hintText: "Enter email or name",
                 controller: emailController,
-                validator: (value) => validateEmail(value),
+                // validator: (value) => validateEmail(value) ,
               ),
               const Gap(15),
               CustomTextField(
                 hintText: "Password",
                 controller: passwordController,
-                validator: (p0) => null,
+                // validator: (p0) => null,
               ),
               const Gap(20),
               Align(

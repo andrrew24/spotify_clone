@@ -53,19 +53,19 @@ class _RegisterFormState extends State<RegisterForm> {
               CustomTextField(
                 hintText: "Full Name",
                 controller: nameController,
-                validator: (value) => validateName(value),
+                validator: (value) => validateName(value) ,
               ),
               const Gap(25),
               CustomTextField(
                 hintText: "Enter Email",
                 controller: emailController,
-                validator: (value) => validateEmail(value),
+                validator: (value) => validateEmail(value) ,
               ),
               const Gap(25),
               CustomTextField(
                 hintText: "Password",
                 controller: passwordController,
-                validator: (value) => validatePassword(value),
+                validator: (value) => validatePassword(value) ,
               ),
               const Gap(25),
               isLoading
@@ -91,43 +91,3 @@ class _RegisterFormState extends State<RegisterForm> {
   }
 }
 
-
-// Form(
-//         autovalidateMode: AutovalidateMode.always,
-//         key: formKey,
-//         child: Column(
-//           children: [
-//             CustomTextField(
-//               hintText: "Full Name",
-//               controller: nameController,
-//               validator: (value) => validateName(value),
-//             ),
-//             const Gap(25),
-//             CustomTextField(
-//               hintText: "Enter Email",
-//               controller: emailController,
-//               validator: (value) => validateEmail(value),
-//             ),
-//             const Gap(25),
-//             CustomTextField(
-//               hintText: "Password",
-//               controller: passwordController,
-//               validator: (value) => validatePassword(value),
-//             ),
-//             const Gap(25),
-//             BasicAppButton(
-//                 title: "Create",
-//                 onPressed: () async {
-//                   if (formKey.currentState!.validate()) {
-//                     await serviceLocator<AuthCubit>().register(
-//                       CreateUserModel(
-//                         fullname: nameController.text,
-//                         email: emailController.text,
-//                         password: passwordController.text,
-//                       ),
-//                     );
-//                   }
-//                 }),
-//           ],
-//         ),
-//       ),

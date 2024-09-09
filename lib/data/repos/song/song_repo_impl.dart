@@ -8,7 +8,7 @@ class SongRepoImpl extends SongRepo {
 
   SongRepoImpl({required this.songRemoteDataSource});
   @override
-  Future<Either> getNewSongs()async {
+  Future<Either> getNewSongs() async {
     return await songRemoteDataSource.fetchNewSongs();
   }
 }

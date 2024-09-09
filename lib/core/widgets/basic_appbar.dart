@@ -26,7 +26,7 @@ class BasicAppBar extends StatelessWidget implements PreferredSizeWidget {
     return AppBar(
       actions: [
         trailingIcon == null
-            ? SizedBox()
+            ? const SizedBox()
             : IconButton(
                 onPressed: trailingonPressed,
                 icon: Icon(
@@ -60,6 +60,8 @@ class BasicAppBar extends StatelessWidget implements PreferredSizeWidget {
       title: title,
     );
   }
+
+
 
   @override
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);

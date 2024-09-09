@@ -31,7 +31,6 @@ class ServerFailure extends Failure {
         break;
       default:
         errorMessage = 'An unknown error occurred. Please try again.';
-        print(error);
         break;
     }
 
