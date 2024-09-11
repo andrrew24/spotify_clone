@@ -10,7 +10,7 @@ import 'package:spotify_clone/domain/usecases/song/get_new_song_usecase.dart';
 import 'package:spotify_clone/presentation/features/authentication/manager/login/cubit/login_cubit.dart';
 import 'package:spotify_clone/presentation/features/authentication/manager/register/cubit/register_cubit.dart';
 import 'package:spotify_clone/presentation/features/choosemode/manager/cubit/theme_cubit.dart';
-import 'package:spotify_clone/presentation/features/home/manager/cubit/get_new_songs_cubit.dart';
+import 'package:spotify_clone/presentation/features/home/manager/get_new_songs_cubit/get_new_songs_cubit.dart';
 import 'package:spotify_clone/presentation/features/home/pages/home_page.dart';
 
 void main() async {

@@ -7,9 +7,10 @@ import 'package:spotify_clone/core/config/assets/app_styles.dart';
 import 'package:spotify_clone/core/config/assets/vectors.dart';
 import 'package:spotify_clone/core/config/theme/app_colors.dart';
 import 'package:spotify_clone/core/widgets/basic_appbar.dart';
-import 'package:spotify_clone/presentation/features/home/manager/cubit/get_new_songs_cubit.dart';
+import 'package:spotify_clone/presentation/features/home/manager/get_new_songs_cubit/get_new_songs_cubit.dart';
 import 'package:spotify_clone/presentation/features/home/widgets/custom_card.dart';
 import 'package:spotify_clone/presentation/features/home/widgets/new_songs_list.dart';
+import 'package:spotify_clone/presentation/features/home/widgets/playlist.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -43,38 +44,34 @@ class _HomePageState extends State<HomePage>
         hasBG: false,
         leadingonPressed: () {},
       ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20),
+      body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Gap(30),
-            const CustomCard(),
+            const Gap(50),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8.0),
+              child: const CustomCard(),
+            ),
             const Gap(40),
             _tabs(),
             const Gap(20),
-            SizedBox(
-              height: 220,
-              child: TabBarView(controller: _tabController, children: [
-                const NewSongsList(),
-                Container(),
-                Container(),
-                Container(),
-              ]),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 3),
+              child: SizedBox(
+                height: 220,
+                child: TabBarView(controller: _tabController, children: [
+                  const NewSongsList(),
+                  Container(),
+                  Container(),
+                  Container(),
+                ]),
+              ),
             ),
             Gap(25),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  "Playlist",
-                  style: AppStyles.styleMedium20(),
-                ),
-                Text(
-                  "See More",
-                  style: AppStyles.styleRegular12(),
-                ),
-              ],
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8.0),
+              child: Playlist(),
             )
           ],
         ),

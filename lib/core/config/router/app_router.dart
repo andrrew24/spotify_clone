@@ -12,7 +12,7 @@ import 'package:spotify_clone/presentation/features/authentication/pages/registe
 import 'package:spotify_clone/presentation/features/authentication/pages/register_page.dart';
 import 'package:spotify_clone/presentation/features/authentication/pages/sign_in_page.dart';
 import 'package:spotify_clone/presentation/features/choosemode/pages/choose_mode_page.dart';
-import 'package:spotify_clone/presentation/features/home/manager/cubit/get_new_songs_cubit.dart';
+import 'package:spotify_clone/presentation/features/home/manager/get_new_songs_cubit/get_new_songs_cubit.dart';
 import 'package:spotify_clone/presentation/features/home/pages/home_page.dart';
 import 'package:spotify_clone/presentation/features/intro/pages/get_started_page.dart';
 import 'package:spotify_clone/presentation/features/splash/pages/splash_page.dart';

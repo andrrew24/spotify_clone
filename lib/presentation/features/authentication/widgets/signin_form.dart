@@ -14,7 +14,7 @@ import 'package:spotify_clone/data/models/auth/signin_user_model.dart';
 import 'package:spotify_clone/data/sources/song/song_remote_data_source.dart';
 import 'package:spotify_clone/presentation/features/authentication/manager/login/cubit/login_cubit.dart';
 import 'package:spotify_clone/presentation/features/authentication/widgets/custom_text_field.dart';
-import 'package:spotify_clone/presentation/features/home/manager/cubit/get_new_songs_cubit.dart';
+import 'package:spotify_clone/presentation/features/home/manager/get_new_songs_cubit/get_new_songs_cubit.dart';
 
 class SigninForm extends StatefulWidget {
   const SigninForm({

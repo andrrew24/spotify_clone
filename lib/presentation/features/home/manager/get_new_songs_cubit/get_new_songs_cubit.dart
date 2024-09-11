@@ -15,17 +15,13 @@ class GetNewSongsCubit extends Cubit<GetNewSongsState> {
 
   Future<void> getNewSongs() async {
     emit(GetNewSongsLoading());
-    log("get new songs TRIGGERED");
     var returnedSongs = await getNewSongsUseCase.call();
     returnedSongs.fold(
       (l) {
-        emit(GetNewSongsFailure(errorMessage: l));
-        log("get new songs failed");
-        
+        emit(GetNewSongsFailure(errorMessage: l));        
       },
       (r) {
         emit(GetNewSongsSuccess(songs: r));
-        log("get new songs success");
       },
     );
   }

@@ -7,7 +7,7 @@ import 'package:spotify_clone/core/config/assets/app_styles.dart';
 import 'package:spotify_clone/core/config/theme/app_colors.dart';
 import 'package:spotify_clone/domain/entities/song_entity.dart';
 import 'package:spotify_clone/domain/usecases/song/get_new_song_usecase.dart';
-import 'package:spotify_clone/presentation/features/home/manager/cubit/get_new_songs_cubit.dart';
+import 'package:spotify_clone/presentation/features/home/manager/get_new_songs_cubit/get_new_songs_cubit.dart';
 import 'package:spotify_clone/core/config/app_urls.dart';
 
 class NewSongsList extends StatelessWidget {

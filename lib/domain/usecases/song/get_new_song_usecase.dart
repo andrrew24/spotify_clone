@@ -1,13 +1,13 @@
 import 'package:dartz/dartz.dart';
 import 'package:spotify_clone/core/usecase/usecase.dart';
-import 'package:spotify_clone/domain/repos/song/song_repo.dart';
+import 'package:spotify_clone/domain/repos/song/get_new_song_repo.dart';
 
 class GetNewSongsUseCase implements Usecase<Either, dynamic> {
-  final SongRepo songRepo;
+  final GetNewSongRepo getNewSongRepo;
 
-  GetNewSongsUseCase({required this.songRepo});
+  GetNewSongsUseCase({required this.getNewSongRepo});
   @override
   Future<Either> call({params}) async {
-    return await songRepo.getNewSongs();
+    return await getNewSongRepo.getNewSongs();
   }
 }
