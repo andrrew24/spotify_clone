@@ -41,6 +41,11 @@ abstract class AppStyles {
         fontFamily: 'Satoshi', fontSize: 20, fontWeight: FontWeight.bold);
   }
 
+  static TextStyle styleMedium20() {
+    return const TextStyle(
+        fontFamily: 'Satoshi', fontSize: 20, fontWeight: FontWeight.w500);
+  }
+
   static TextStyle styleBold22() {
     return const TextStyle(
         color: Colors.white,

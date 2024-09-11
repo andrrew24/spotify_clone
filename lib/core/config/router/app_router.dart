@@ -5,7 +5,7 @@ import 'package:spotify_clone/common/helper/service_locator.dart';
 import 'package:spotify_clone/core/constants/const.dart';
 import 'package:spotify_clone/domain/usecases/auth/login_usecase.dart';
 import 'package:spotify_clone/domain/usecases/auth/register_usecase.dart';
-import 'package:spotify_clone/domain/usecases/song/song_usecase.dart';
+import 'package:spotify_clone/domain/usecases/song/get_new_song_usecase.dart';
 import 'package:spotify_clone/presentation/features/authentication/manager/login/cubit/login_cubit.dart';
 import 'package:spotify_clone/presentation/features/authentication/manager/register/cubit/register_cubit.dart';
 import 'package:spotify_clone/presentation/features/authentication/pages/register_or_signup_page.dart';

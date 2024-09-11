@@ -18,11 +18,15 @@ class SongRemoteDataSourceImpl extends SongRemoteDataSource {
   Future<Either> fetchNewSongs() async {
     try {
       List<SongEntity> songs = [];
-      final body =
-          await pb.collection('songs').getFullList(sort: '-releaseDate');
+      final body = await pb.collection('songs').getList(
+        sort: '-created',
+       page: 1,
+       perPage: 3
+      );
 
-      for (var record in body) {
-        var songModel = Song.fromJson(record.data);
+      for (var record in body.items) {
+        var songModel = SongModel.fromJson(record.data,record.id);
+
         songs.add(songModel.toEntity());
       }
       return Right(songs);
@@ -31,5 +35,3 @@ class SongRemoteDataSourceImpl extends SongRemoteDataSource {
     }
   }
 }
-
-

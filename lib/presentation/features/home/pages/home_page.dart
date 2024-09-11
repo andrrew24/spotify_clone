@@ -46,19 +46,35 @@ class _HomePageState extends State<HomePage>
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const Gap(30),
             const CustomCard(),
             const Gap(40),
             _tabs(),
+            const Gap(20),
             SizedBox(
-              height: 260,
+              height: 220,
               child: TabBarView(controller: _tabController, children: [
                 const NewSongsList(),
                 Container(),
                 Container(),
                 Container(),
               ]),
+            ),
+            Gap(25),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  "Playlist",
+                  style: AppStyles.styleMedium20(),
+                ),
+                Text(
+                  "See More",
+                  style: AppStyles.styleRegular12(),
+                ),
+              ],
             )
           ],
         ),
@@ -69,7 +85,7 @@ class _HomePageState extends State<HomePage>
   Widget _tabs() {
     return TabBar(
       labelStyle: AppStyles.styleBold13(),
-      labelColor: Colors.white,
+      labelColor: AppColors.primaryColor,
       indicatorPadding: const EdgeInsets.only(bottom: -5),
       indicatorColor: AppColors.primaryColor,
       isScrollable: false,

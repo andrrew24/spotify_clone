@@ -8,7 +8,7 @@ import 'package:spotify_clone/domain/repos/auth/auth_repo.dart';
 import 'package:spotify_clone/domain/repos/song/song_repo.dart';
 import 'package:spotify_clone/domain/usecases/auth/login_usecase.dart';
 import 'package:spotify_clone/domain/usecases/auth/register_usecase.dart';
-import 'package:spotify_clone/domain/usecases/song/song_usecase.dart';
+import 'package:spotify_clone/domain/usecases/song/get_new_song_usecase.dart';
 import 'package:spotify_clone/presentation/features/authentication/manager/login/cubit/login_cubit.dart';
 import 'package:spotify_clone/presentation/features/authentication/manager/register/cubit/register_cubit.dart';
 

@@ -4,8 +4,7 @@ import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 import 'package:spotify_clone/core/errors/failure.dart';
 import 'package:spotify_clone/domain/entities/song_entity.dart';
-import 'package:spotify_clone/domain/repos/song/song_repo.dart';
-import 'package:spotify_clone/domain/usecases/song/song_usecase.dart';
+import 'package:spotify_clone/domain/usecases/song/get_new_song_usecase.dart';
 
 part 'get_new_songs_state.dart';
 
@@ -22,6 +21,7 @@ class GetNewSongsCubit extends Cubit<GetNewSongsState> {
       (l) {
         emit(GetNewSongsFailure(errorMessage: l));
         log("get new songs failed");
+        
       },
       (r) {
         emit(GetNewSongsSuccess(songs: r));
