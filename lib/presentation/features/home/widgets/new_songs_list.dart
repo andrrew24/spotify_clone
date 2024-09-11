@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
+import 'package:go_router/go_router.dart';
 import 'package:spotify_clone/common/helper/is_dark_mode.dart';
 import 'package:spotify_clone/common/helper/service_locator.dart';
 import 'package:spotify_clone/core/config/assets/app_styles.dart';
 import 'package:spotify_clone/core/config/theme/app_colors.dart';
+import 'package:spotify_clone/core/constants/const.dart';
 import 'package:spotify_clone/domain/entities/song_entity.dart';
 import 'package:spotify_clone/domain/usecases/song/get_new_song_usecase.dart';
 import 'package:spotify_clone/presentation/features/home/manager/get_new_songs_cubit/get_new_songs_cubit.dart';
@@ -38,48 +40,53 @@ class NewSongsList extends StatelessWidget {
     return ListView.separated(
         scrollDirection: Axis.horizontal,
         itemBuilder: (context, index) {
-          return SizedBox(
-            width: 140,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Expanded(
-                  child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(15),
-                      image: DecorationImage(
-                        fit: BoxFit.cover,
-                        image: NetworkImage(
-                          "${AppConstants.appApi}${songs[index].id}/${songs[index].coverLink}",
+          return GestureDetector(
+            onTap: () {
+              GoRouter.of(context).push(kPlaySongPage, extra: songs[index]);
+            },
+            child: SizedBox(
+              width: 140,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Expanded(
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(15),
+                        image: DecorationImage(
+                          fit: BoxFit.cover,
+                          image: NetworkImage(
+                            "${AppConstants.appApi}${songs[index].id}/${songs[index].coverLink}",
+                          ),
+                        ),
+                      ),
+                      child: Align(
+                        alignment: Alignment.bottomRight,
+                        child: Container(
+                          transform: Matrix4.translationValues(-5, 15, 0),
+                          height: 40,
+                          width: 40,
+                          child: Icon(Icons.play_arrow_rounded),
+                          decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: isLightMode(context)
+                                  ? AppColors.lightGrey
+                                  : AppColors.darkGrey),
                         ),
                       ),
                     ),
-                    child: Align(
-                      alignment: Alignment.bottomRight,
-                      child: Container(
-                        transform: Matrix4.translationValues(-5, 15, 0),
-                        height: 40,
-                        width: 40,
-                        child: Icon(Icons.play_arrow_rounded),
-                        decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: isLightMode(context)
-                                ? AppColors.lightGrey
-                                : AppColors.darkGrey),
-                      ),
-                    ),
                   ),
-                ),
-                Gap(10),
-                Text(
-                  songs[index].title,
-                  style: AppStyles.styleBold16(),
-                ),
-                Text(
-                  songs[index].artist,
-                  style: AppStyles.styleMedium14(),
-                ),
-              ],
+                  Gap(10),
+                  Text(
+                    songs[index].title,
+                    style: AppStyles.styleBold16(),
+                  ),
+                  Text(
+                    songs[index].artist,
+                    style: AppStyles.styleMedium14(),
+                  ),
+                ],
+              ),
             ),
           );
         },

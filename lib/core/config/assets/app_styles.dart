@@ -11,6 +11,11 @@ abstract class AppStyles {
         fontFamily: 'Satoshi', fontSize: 16, fontWeight: FontWeight.bold);
   }
 
+  static TextStyle styleBold18() {
+    return const TextStyle(
+        fontFamily: 'Satoshi', fontSize: 18, fontWeight: FontWeight.bold);
+  }
+
   static TextStyle styleRegular12() {
     return const TextStyle(
         fontFamily: 'Satoshi', fontSize: 12, fontWeight: FontWeight.normal);
@@ -39,6 +44,13 @@ abstract class AppStyles {
   static TextStyle styleBold20() {
     return const TextStyle(
         fontFamily: 'Satoshi', fontSize: 20, fontWeight: FontWeight.bold);
+  }
+
+  static TextStyle styleRegular20() {
+    return const TextStyle(
+      fontFamily: 'Satoshi',
+      fontSize: 20,
+    );
   }
 
   static TextStyle styleMedium20() {

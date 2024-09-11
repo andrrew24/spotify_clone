@@ -15,6 +15,7 @@ import 'package:spotify_clone/presentation/features/choosemode/pages/choose_mode
 import 'package:spotify_clone/presentation/features/home/manager/get_new_songs_cubit/get_new_songs_cubit.dart';
 import 'package:spotify_clone/presentation/features/home/pages/home_page.dart';
 import 'package:spotify_clone/presentation/features/intro/pages/get_started_page.dart';
+import 'package:spotify_clone/presentation/features/play_song/pages/play_song_page.dart';
 import 'package:spotify_clone/presentation/features/splash/pages/splash_page.dart';
 
 final GoRouter appRouter = GoRouter(
@@ -64,6 +65,12 @@ final GoRouter appRouter = GoRouter(
       path: kHomePage,
       builder: (BuildContext context, GoRouterState state) {
         return const HomePage();
+      },
+    ),
+    GoRoute(
+      path: kPlaySongPage,
+      builder: (BuildContext context, GoRouterState state) {
+        return const PlaySongPage();
       },
     ),
   ],
