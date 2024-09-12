@@ -15,7 +15,7 @@ class SongModel {
   num? duration;
 
   SongModel({
-   required this.id,
+    required this.id,
     this.collectionId,
     this.collectionName,
     this.created,
@@ -28,7 +28,8 @@ class SongModel {
     this.duration,
   });
 
-  factory SongModel.fromJson(Map<String, dynamic> json,String songId) => SongModel(
+  factory SongModel.fromJson(Map<String, dynamic> json, String songId) =>
+      SongModel(
         id: songId,
         collectionId: json['collectionId'] as String?,
         collectionName: json['collectionName'] as String?,
@@ -47,6 +48,7 @@ extension SongModelX on SongModel {
   SongEntity toEntity() {
     return SongEntity(
         coverLink: cover!,
+        songLink:song!,
         title: title!,
         id: id,
         artist: artist!,

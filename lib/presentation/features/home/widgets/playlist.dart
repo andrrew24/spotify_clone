@@ -81,17 +81,20 @@ class Playlist extends StatelessWidget {
             style: AppStyles.styleRegular12(),
           ),
           trailing: SizedBox(
-            width: 100,
+            width: 90,
             child: Row(
               children: [
                 Text(
                   songs[index].duration.toStringAsFixed(2).replaceAll('.', ':'),
                   style: AppStyles.styleRegular15(),
                 ),
-                Gap(40),
-                Icon(
-                  Icons.favorite_border,
-                  size: 20,
+                Gap(5),
+                IconButton(
+                  icon: Icon(
+                    Icons.favorite_border,
+                    color: AppColors.darkGrey,
+                  ),
+                  onPressed: () {},
                 )
               ],
             ),

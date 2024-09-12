@@ -1,5 +1,6 @@
 import 'package:get_it/get_it.dart';
 import 'package:pocketbase/pocketbase.dart';
+import 'package:spotify_clone/core/config/app_urls.dart';
 import 'package:spotify_clone/data/repos/auth/auth_repo_impl.dart';
 import 'package:spotify_clone/data/repos/song/song_repo_impl.dart';
 import 'package:spotify_clone/data/sources/auth/auth_remote_data_source.dart';
@@ -18,7 +19,7 @@ final serviceLocator = GetIt.instance;
 
 Future<void> initDependences() async {
   serviceLocator.registerLazySingleton<PocketBase>(
-    () => PocketBase('http://127.0.0.1:8090/'),
+    () => PocketBase(AppUrls.localHost),
   );
 
   serviceLocator.registerSingleton<AuthRemoteDataSource>(
@@ -28,8 +29,7 @@ Future<void> initDependences() async {
       GetNewSongRemoteDataSourceImpl(pb: serviceLocator<PocketBase>()));
 
   serviceLocator.registerSingleton<GetPlaylistRemoteDataSource>(
-    GetPlaylistRemoteDataSourceImpl(pb: serviceLocator<PocketBase>())
-  );
+      GetPlaylistRemoteDataSourceImpl(pb: serviceLocator<PocketBase>()));
 
   serviceLocator.registerSingleton<AuthRepo>(AuthRepoImpl(
       authRemoteDataSource: serviceLocator<AuthRemoteDataSource>()));
@@ -39,7 +39,8 @@ Future<void> initDependences() async {
           serviceLocator<GetNewSongRemoteDataSource>()));
 
   serviceLocator.registerSingleton<GetPlaylistRepo>(GetPlaylistRepoImpl(
-      getPlaylistRemoteDataSource: serviceLocator<GetPlaylistRemoteDataSource>()));
+      getPlaylistRemoteDataSource:
+          serviceLocator<GetPlaylistRemoteDataSource>()));
 
   serviceLocator.registerSingleton<RegisterUsecase>(
       RegisterUsecase(authRepo: serviceLocator<AuthRepo>()));

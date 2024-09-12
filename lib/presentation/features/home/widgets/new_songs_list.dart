@@ -56,7 +56,7 @@ class NewSongsList extends StatelessWidget {
                         image: DecorationImage(
                           fit: BoxFit.cover,
                           image: NetworkImage(
-                            "${AppConstants.appApi}${songs[index].id}/${songs[index].coverLink}",
+                            "${AppUrls.appApi}${songs[index].id}/${songs[index].coverLink}",
                           ),
                         ),
                       ),

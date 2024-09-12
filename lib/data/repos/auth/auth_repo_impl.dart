@@ -19,7 +19,6 @@ class AuthRepoImpl implements AuthRepo {
       await authRemoteDataSource.register(model);
       return const Right("Register Success");
     } on ClientException catch (e) {
-      log(ServerFailure.fromPocketBase(e).errorMessage);
       return Left(ServerFailure.fromPocketBase(e));
     }
   }
@@ -30,7 +29,6 @@ class AuthRepoImpl implements AuthRepo {
       await authRemoteDataSource.signin(model);
       return const Right("Login Success");
     } on ClientException catch (e) {
-      log(ServerFailure.fromPocketBase(e).errorMessage);
       return Left(ServerFailure.fromPocketBase(e));
     }
   }

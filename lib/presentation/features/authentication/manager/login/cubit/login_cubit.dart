@@ -13,21 +13,17 @@ class LoginCubit extends Cubit<LoginState> {
 
   Future<void> loginUser(SigninUserModel user) async {
     emit(LoginLoading());
-    log('LoginLoading emitted');
     try {
       var result = await loginUsecase.call(params: user);
       result.fold(
         (l) {
-          log('LoginFailure emitted with error: ${l.errorMessage}');
           emit(LoginFailure(errorMessage: l.errorMessage));
         },
         (r) {
-          log('LoginSuccess emitted');
           emit(LoginSuccess());
         },
       );
     } catch (e) {
-      log('LoginFailure emitted with exception: $e');
       emit(LoginFailure(errorMessage: e.toString()));
     }
   }
