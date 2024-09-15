@@ -4,10 +4,10 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 import 'package:spotify_clone/common/helper/format_duration.dart';
-import 'package:spotify_clone/core/config/app_urls.dart';
+import 'package:spotify_clone/core/config/constants/app_const.dart';
 import 'package:spotify_clone/core/config/assets/app_styles.dart';
 import 'package:spotify_clone/core/config/theme/app_colors.dart';
-import 'package:spotify_clone/core/widgets/basic_appbar.dart';
+import 'package:spotify_clone/common/widgets/app_bar/basic_appbar.dart';
 import 'package:spotify_clone/domain/entities/song_entity.dart';
 import 'package:spotify_clone/presentation/features/play_song/manager/play_song_cubit/play_song_cubit.dart';
 
@@ -35,7 +35,7 @@ class PlaySongPage extends StatelessWidget {
       body: BlocProvider(
         create: (context) => PlaySongCubit()
           ..loadSong(
-            "${AppUrls.appApi}${song.id}/${song.songLink}",
+            "${AppConstants.appApi}${song.id}/${song.songLink}",
             // "http://10.0.2.2:8090/api/files/2tw7h5a5q8bjqyj/3shktlx8jeacjzq/the_weeknd_save_your_tears_remix_1xpxknBNlQ.mp3?token="
           )
           ..playOrPauseSong(),
@@ -51,9 +51,9 @@ class PlaySongPage extends StatelessWidget {
                       image: DecorationImage(
                           fit: BoxFit.cover,
                           image: NetworkImage(
-                              "${AppUrls.appApi}${song.id}/${song.coverLink}"))),
+                              "${AppConstants.appApi}${song.id}/${song.coverLink}"))),
                 ),
-                Gap(20),
+                const Gap(20),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -70,13 +70,13 @@ class PlaySongPage extends StatelessWidget {
                       ],
                     ),
                     IconButton(
-                      icon: Icon(Icons.favorite_outline_outlined),
+                      icon: const Icon(Icons.favorite_outline_outlined),
                       onPressed: () {},
                       color: AppColors.darkGrey,
                     )
                   ],
                 ),
-                Gap(20),
+                const Gap(20),
                 _songPlayer(song)
               ],
             ),
@@ -90,7 +90,7 @@ class PlaySongPage extends StatelessWidget {
     return BlocBuilder<PlaySongCubit, PlaySongState>(
       builder: (context, state) {
         if (state is PlaySongLoading) {
-          return Center(
+          return const Center(
             child: CircularProgressIndicator(),
           );
         }
@@ -98,7 +98,7 @@ class PlaySongPage extends StatelessWidget {
         if (state is PlaySongFailure) {
           return Text(state.errorMessage);
         }
-        if (state is PlaySongSuccess) {
+        if (state is PlayingSongSuccess) {
           return Column(
             children: [
               Slider(
@@ -130,7 +130,7 @@ class PlaySongPage extends StatelessWidget {
                   ),
                 ],
               ),
-              Gap(20),
+              const Gap(20),
               GestureDetector(
                 onTap: () {
                   context.read<PlaySongCubit>().playOrPauseSong();
@@ -138,7 +138,7 @@ class PlaySongPage extends StatelessWidget {
                 child: Container(
                   height: 60,
                   width: 60,
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     shape: BoxShape.circle,
                     color: AppColors.primaryColor,
                   ),

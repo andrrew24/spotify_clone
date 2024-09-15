@@ -9,7 +9,7 @@ import 'package:spotify_clone/core/config/assets/app_styles.dart';
 import 'package:spotify_clone/core/config/assets/images.dart';
 import 'package:spotify_clone/core/config/assets/vectors.dart';
 import 'package:spotify_clone/core/constants/const.dart';
-import 'package:spotify_clone/core/widgets/basic_appbar.dart';
+import 'package:spotify_clone/common/widgets/app_bar/basic_appbar.dart';
 import 'package:spotify_clone/domain/usecases/auth/login_usecase.dart';
 import 'package:spotify_clone/domain/usecases/auth/register_usecase.dart';
 import 'package:spotify_clone/presentation/features/authentication/manager/login/cubit/login_cubit.dart';

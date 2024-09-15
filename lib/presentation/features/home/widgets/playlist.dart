@@ -24,7 +24,7 @@ class Playlist extends StatelessWidget {
       child: BlocBuilder<GetPlayListCubit, GetPlayListState>(
         builder: (context, state) {
           if (state is GetPlayListLoading) {
-            return Center(
+            return const Center(
               child: CircularProgressIndicator(),
             );
           } else if (state is GetPlayListSuccess) {
@@ -43,7 +43,7 @@ class Playlist extends StatelessWidget {
                     ),
                   ],
                 ),
-                Gap(40),
+                const Gap(40),
                 _songs(state.songs)
               ],
             );
@@ -57,6 +57,7 @@ class Playlist extends StatelessWidget {
   Widget _songs(List<SongEntity> songs) {
     return ListView.separated(
       shrinkWrap: true,
+      physics: NeverScrollableScrollPhysics(),
       itemBuilder: (context, index) {
         return ListTile(
           onTap: () {
@@ -70,7 +71,7 @@ class Playlist extends StatelessWidget {
                 color: isLightMode(context)
                     ? AppColors.lightGrey
                     : AppColors.darkGrey),
-            child: Icon(Icons.play_arrow_rounded),
+            child: const Icon(Icons.play_arrow_rounded),
           ),
           title: Text(
             songs[index].title,
@@ -88,9 +89,9 @@ class Playlist extends StatelessWidget {
                   songs[index].duration.toStringAsFixed(2).replaceAll('.', ':'),
                   style: AppStyles.styleRegular15(),
                 ),
-                Gap(5),
+                const Gap(5),
                 IconButton(
-                  icon: Icon(
+                  icon: const Icon(
                     Icons.favorite_border,
                     color: AppColors.darkGrey,
                   ),
@@ -101,7 +102,7 @@ class Playlist extends StatelessWidget {
           ),
         );
       },
-      separatorBuilder: (context, index) => Gap(10),
+      separatorBuilder: (context, index) => const Gap(10),
       itemCount: songs.length,
     );
   }

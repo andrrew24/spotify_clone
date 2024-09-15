@@ -10,7 +10,7 @@ import 'package:spotify_clone/core/constants/const.dart';
 import 'package:spotify_clone/domain/entities/song_entity.dart';
 import 'package:spotify_clone/domain/usecases/song/get_new_song_usecase.dart';
 import 'package:spotify_clone/presentation/features/home/manager/get_new_songs_cubit/get_new_songs_cubit.dart';
-import 'package:spotify_clone/core/config/app_urls.dart';
+import 'package:spotify_clone/core/config/constants/app_const.dart';
 
 class NewSongsList extends StatelessWidget {
   const NewSongsList({super.key});
@@ -56,7 +56,7 @@ class NewSongsList extends StatelessWidget {
                         image: DecorationImage(
                           fit: BoxFit.cover,
                           image: NetworkImage(
-                            "${AppUrls.appApi}${songs[index].id}/${songs[index].coverLink}",
+                            "${AppConstants.appApi}${songs[index].id}/${songs[index].coverLink}",
                           ),
                         ),
                       ),
@@ -66,17 +66,17 @@ class NewSongsList extends StatelessWidget {
                           transform: Matrix4.translationValues(-5, 15, 0),
                           height: 40,
                           width: 40,
-                          child: Icon(Icons.play_arrow_rounded),
                           decoration: BoxDecoration(
                               shape: BoxShape.circle,
                               color: isLightMode(context)
                                   ? AppColors.lightGrey
                                   : AppColors.darkGrey),
+                          child: const Icon(Icons.play_arrow_rounded),
                         ),
                       ),
                     ),
                   ),
-                  Gap(10),
+                  const Gap(10),
                   Text(
                     songs[index].title,
                     style: AppStyles.styleBold16(),

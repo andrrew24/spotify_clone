@@ -9,6 +9,7 @@ import 'package:spotify_clone/core/config/theme/app_colors.dart';
 import 'package:spotify_clone/core/constants/const.dart';
 import 'package:spotify_clone/data/models/auth/create_user_model.dart';
 import 'package:spotify_clone/presentation/features/authentication/manager/register/cubit/register_cubit.dart';
+import 'package:spotify_clone/presentation/features/authentication/manager/token/token_manager.dart';
 import 'package:spotify_clone/presentation/features/authentication/widgets/custom_text_field.dart';
 
 class RegisterForm extends StatefulWidget {
@@ -41,6 +42,7 @@ class _RegisterFormState extends State<RegisterForm> {
           ScaffoldMessenger.of(context)
               .showSnackBar(buildSnackBar("Success", "Register success"));
 
+          storeUserToken(); // store user access token
           GoRouter.of(context).pushReplacement(kHomePage);
         }
       },
@@ -53,19 +55,19 @@ class _RegisterFormState extends State<RegisterForm> {
               CustomTextField(
                 hintText: "Full Name",
                 controller: nameController,
-                validator: (value) => validateName(value) ,
+                validator: (value) => validateName(value),
               ),
               const Gap(25),
               CustomTextField(
                 hintText: "Enter Email",
                 controller: emailController,
-                validator: (value) => validateEmail(value) ,
+                validator: (value) => validateEmail(value),
               ),
               const Gap(25),
               CustomTextField(
                 hintText: "Password",
                 controller: passwordController,
-                validator: (value) => validatePassword(value) ,
+                validator: (value) => validatePassword(value),
               ),
               const Gap(25),
               isLoading
@@ -90,4 +92,3 @@ class _RegisterFormState extends State<RegisterForm> {
     );
   }
 }
-

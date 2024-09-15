@@ -7,7 +7,7 @@ import 'package:spotify_clone/core/config/assets/vectors.dart';
 import 'package:spotify_clone/core/config/theme/app_colors.dart';
 import 'package:spotify_clone/core/constants/const.dart';
 import 'package:spotify_clone/presentation/features/authentication/widgets/register_form.dart';
-import 'package:spotify_clone/core/widgets/basic_appbar.dart';
+import 'package:spotify_clone/common/widgets/app_bar/basic_appbar.dart';
 
 class RegisterPage extends StatelessWidget {
   const RegisterPage({super.key});

@@ -6,7 +6,7 @@ import 'package:gap/gap.dart';
 import 'package:spotify_clone/core/config/assets/app_styles.dart';
 import 'package:spotify_clone/core/config/assets/vectors.dart';
 import 'package:spotify_clone/core/config/theme/app_colors.dart';
-import 'package:spotify_clone/core/widgets/basic_appbar.dart';
+import 'package:spotify_clone/common/widgets/app_bar/basic_appbar.dart';
 import 'package:spotify_clone/presentation/features/home/manager/get_new_songs_cubit/get_new_songs_cubit.dart';
 import 'package:spotify_clone/presentation/features/home/widgets/custom_card.dart';
 import 'package:spotify_clone/presentation/features/home/widgets/new_songs_list.dart';
@@ -49,9 +49,9 @@ class _HomePageState extends State<HomePage>
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const Gap(50),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8.0),
-              child: const CustomCard(),
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 8.0),
+              child: CustomCard(),
             ),
             const Gap(40),
             _tabs(),
@@ -68,9 +68,9 @@ class _HomePageState extends State<HomePage>
                 ]),
               ),
             ),
-            Gap(25),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8.0),
+            const Gap(25),
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 8.0),
               child: Playlist(),
             )
           ],

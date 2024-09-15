@@ -8,6 +8,7 @@ import 'package:spotify_clone/domain/usecases/auth/register_usecase.dart';
 import 'package:spotify_clone/domain/usecases/song/get_new_song_usecase.dart';
 import 'package:spotify_clone/presentation/features/authentication/manager/login/cubit/login_cubit.dart';
 import 'package:spotify_clone/presentation/features/authentication/manager/register/cubit/register_cubit.dart';
+import 'package:spotify_clone/presentation/features/authentication/manager/token/token_manager.dart';
 import 'package:spotify_clone/presentation/features/authentication/pages/register_or_signup_page.dart';
 import 'package:spotify_clone/presentation/features/authentication/pages/register_page.dart';
 import 'package:spotify_clone/presentation/features/authentication/pages/sign_in_page.dart';
@@ -19,6 +20,7 @@ import 'package:spotify_clone/presentation/features/play_song/pages/play_song_pa
 import 'package:spotify_clone/presentation/features/splash/pages/splash_page.dart';
 
 final GoRouter appRouter = GoRouter(
+  initialLocation: isUserSignedIn() ? kHomePage : kgetStarted,
   routes: <RouteBase>[
     GoRoute(
       path: kSplash,

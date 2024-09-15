@@ -29,14 +29,13 @@ class PlaySongCubit extends Cubit<PlaySongState> {
   }
 
   void updateSongPlayer() {
-    emit(PlaySongSuccess());
+    emit(PlayingSongSuccess());
   }
 
   Future<void> loadSong(String url) async {
     try {
-      log(url);
       await audioPlayer.setUrl(url);
-      emit(PlaySongSuccess());
+      emit(PlayingSongSuccess());
     } catch (e) {
       emit(PlaySongFailure(errorMessage: e.toString()));
     }
@@ -49,7 +48,7 @@ class PlaySongCubit extends Cubit<PlaySongState> {
       audioPlayer.play();
     }
 
-    emit(PlaySongSuccess());
+    emit(PlayingSongSuccess());
   }
 
   @override

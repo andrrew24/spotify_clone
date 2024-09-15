@@ -1,6 +1,6 @@
 import 'package:get_it/get_it.dart';
 import 'package:pocketbase/pocketbase.dart';
-import 'package:spotify_clone/core/config/app_urls.dart';
+import 'package:spotify_clone/core/config/constants/app_const.dart';
 import 'package:spotify_clone/data/repos/auth/auth_repo_impl.dart';
 import 'package:spotify_clone/data/repos/song/song_repo_impl.dart';
 import 'package:spotify_clone/data/sources/auth/auth_remote_data_source.dart';
@@ -19,7 +19,7 @@ final serviceLocator = GetIt.instance;
 
 Future<void> initDependences() async {
   serviceLocator.registerLazySingleton<PocketBase>(
-    () => PocketBase(AppUrls.localHost),
+    () => PocketBase(AppConstants.localHost),
   );
 
   serviceLocator.registerSingleton<AuthRemoteDataSource>(

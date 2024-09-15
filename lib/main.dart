@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:spotify_clone/common/helper/service_locator.dart';
+import 'package:spotify_clone/core/config/constants/app_const.dart';
 import 'package:spotify_clone/core/config/router/app_router.dart';
 import 'package:spotify_clone/core/config/theme/app_theme.dart';
 import 'package:spotify_clone/core/observer/simple_bloc_observer.dart';
@@ -14,9 +16,11 @@ import 'package:spotify_clone/presentation/features/home/manager/get_new_songs_c
 import 'package:spotify_clone/presentation/features/home/pages/home_page.dart';
 
 void main() async {
+  await Hive.initFlutter();
   await initDependences();
   WidgetsFlutterBinding.ensureInitialized();
   Bloc.observer = SimpleBlocObserver();
+  await Hive.openBox(AppConstants.accessToken);
   runApp(const SpotifyClone());
 }
 
