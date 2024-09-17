@@ -1,25 +1,36 @@
 import 'package:dartz/dartz.dart';
 import 'package:spotify_clone/core/errors/failure.dart';
 import 'package:spotify_clone/data/sources/song/song_remote_data_source.dart';
-import 'package:spotify_clone/domain/repos/song/get_new_song_repo.dart';
-import 'package:spotify_clone/domain/repos/song/get_playlist_repo.dart';
+import 'package:spotify_clone/domain/repos/song/song_repo.dart';
 
-class GetNewSongRepoImpl extends GetNewSongRepo {
-  final GetNewSongRemoteDataSource _getNewSongRemoteDataSource;
+class SongRepoImpl extends SongRepo {
+  final SongRemoteDataSource _songRemoteDataSource;
 
-  GetNewSongRepoImpl({required GetNewSongRemoteDataSource getNewSongRemoteDataSource}) : _getNewSongRemoteDataSource = getNewSongRemoteDataSource;
+  SongRepoImpl({required SongRemoteDataSource songRemoteDataSource})
+      : _songRemoteDataSource = songRemoteDataSource;
+
+  @override
+  Future<Either> addOrRemoveFavSong(String userId, String songId) async {
+    return await _songRemoteDataSource.addOrRemoveFavoriteSongs(userId, songId);
+  }
+
   @override
   Future<Either> getNewSongs() async {
-    return await _getNewSongRemoteDataSource.fetchNewSongs();
+    return await _songRemoteDataSource.fetchNewSongs();
   }
-}
 
-class GetPlaylistRepoImpl extends GetPlaylistRepo {
-  final GetPlaylistRemoteDataSource _getPlaylistRemoteDataSource;
-
-  GetPlaylistRepoImpl({required GetPlaylistRemoteDataSource getPlaylistRemoteDataSource}) : _getPlaylistRemoteDataSource = getPlaylistRemoteDataSource;
   @override
   Future<Either> getPlayList() async {
-    return await _getPlaylistRemoteDataSource.getPlaylist();
+    return await _songRemoteDataSource.getPlaylist();
+  }
+
+  @override
+  Future<Either> getAllFavSongs(String userId) async {
+    return await _songRemoteDataSource.getAllFavSongs(userId);
+  }
+
+  @override
+  Future<Either<dynamic,bool>> isFavoriteSong(String userId, String songId) async {
+    return _songRemoteDataSource.isFavoriteSong(userId, songId);
   }
 }

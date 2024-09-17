@@ -3,11 +3,9 @@ import 'package:spotify_clone/common/helper/service_locator.dart';
 import 'package:spotify_clone/core/usecase/usecase.dart';
 import 'package:spotify_clone/domain/repos/song/song_repo.dart';
 
-class GetNewSongsUseCase implements Usecase<Either, dynamic> {
-
-
+class GetAllFavSongUsecase extends Usecase<Either, String> {
   @override
-  Future<Either> call({params}) async {
-    return await serviceLocator<SongRepo>().getNewSongs();
+  Future<Either> call({String? params}) async {
+    return await serviceLocator<SongRepo>().getAllFavSongs(params!);
   }
 }

@@ -5,11 +5,13 @@ import 'package:spotify_clone/data/repos/auth/auth_repo_impl.dart';
 import 'package:spotify_clone/data/repos/song/song_repo_impl.dart';
 import 'package:spotify_clone/data/sources/auth/auth_remote_data_source.dart';
 import 'package:spotify_clone/data/sources/song/song_remote_data_source.dart';
+import 'package:spotify_clone/data/sources/song/song_remote_data_source_impl.dart';
 import 'package:spotify_clone/domain/repos/auth/auth_repo.dart';
-import 'package:spotify_clone/domain/repos/song/get_new_song_repo.dart';
-import 'package:spotify_clone/domain/repos/song/get_playlist_repo.dart';
+
+import 'package:spotify_clone/domain/repos/song/song_repo.dart';
 import 'package:spotify_clone/domain/usecases/auth/login_usecase.dart';
 import 'package:spotify_clone/domain/usecases/auth/register_usecase.dart';
+import 'package:spotify_clone/domain/usecases/song/add_or_remove_fav_song_usecase.dart';
 import 'package:spotify_clone/domain/usecases/song/get_new_song_usecase.dart';
 import 'package:spotify_clone/domain/usecases/song/get_playlist_use_case.dart';
 import 'package:spotify_clone/presentation/features/authentication/manager/login/cubit/login_cubit.dart';
@@ -25,38 +27,29 @@ Future<void> initDependences() async {
   serviceLocator.registerSingleton<AuthRemoteDataSource>(
       AuthRemoteDataSourceImpl(pb: serviceLocator<PocketBase>()));
 
-  serviceLocator.registerSingleton<GetNewSongRemoteDataSource>(
-      GetNewSongRemoteDataSourceImpl(pb: serviceLocator<PocketBase>()));
-
-  serviceLocator.registerSingleton<GetPlaylistRemoteDataSource>(
-      GetPlaylistRemoteDataSourceImpl(pb: serviceLocator<PocketBase>()));
-
   serviceLocator.registerSingleton<AuthRepo>(AuthRepoImpl(
       authRemoteDataSource: serviceLocator<AuthRemoteDataSource>()));
 
-  serviceLocator.registerSingleton<GetNewSongRepo>(GetNewSongRepoImpl(
-      getNewSongRemoteDataSource:
-          serviceLocator<GetNewSongRemoteDataSource>()));
-
-  serviceLocator.registerSingleton<GetPlaylistRepo>(GetPlaylistRepoImpl(
-      getPlaylistRemoteDataSource:
-          serviceLocator<GetPlaylistRemoteDataSource>()));
-
-  serviceLocator.registerSingleton<RegisterUsecase>(
-      RegisterUsecase(authRepo: serviceLocator<AuthRepo>()));
+  serviceLocator.registerSingleton<RegisterUsecase>(RegisterUsecase());
 
   serviceLocator.registerSingleton<RegisterCubit>(
       RegisterCubit(serviceLocator<RegisterUsecase>()));
 
-  serviceLocator.registerSingleton<LoginUsecase>(
-      LoginUsecase(authRepo: serviceLocator<AuthRepo>()));
+  serviceLocator.registerSingleton<LoginUsecase>(LoginUsecase());
 
   serviceLocator.registerSingleton<LoginCubit>(
       LoginCubit(serviceLocator<LoginUsecase>()));
 
-  serviceLocator.registerSingleton<GetNewSongsUseCase>(
-      GetNewSongsUseCase(getNewSongRepo: serviceLocator<GetNewSongRepo>()));
+  serviceLocator.registerSingleton<SongRemoteDataSource>(
+      SongRemoteDataSourceImpl(pb: serviceLocator<PocketBase>()));
 
-  serviceLocator.registerSingleton<GetPlaylistUseCase>(
-      GetPlaylistUseCase(getPlaylistRepo: serviceLocator<GetPlaylistRepo>()));
+  serviceLocator.registerSingleton<SongRepo>(SongRepoImpl(
+      songRemoteDataSource: serviceLocator<SongRemoteDataSource>()));
+
+  serviceLocator.registerSingleton<GetNewSongsUseCase>(GetNewSongsUseCase());
+
+  serviceLocator.registerSingleton<GetPlaylistUseCase>(GetPlaylistUseCase());
+
+  serviceLocator.registerSingleton<AddOrRemoveFavSongUsecase>(
+      AddOrRemoveFavSongUsecase());
 }
