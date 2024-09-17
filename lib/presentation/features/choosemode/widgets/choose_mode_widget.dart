@@ -28,15 +28,14 @@ class _ChooseModeWidgetState extends State<ChooseModeWidget> {
 
   @override
   Widget build(BuildContext context) {
-    final themeCubit = context.read<ThemeCubit>();
-    activeOption = themeCubit.state == ThemeState.dark ? 0 : 1;
+    activeOption = context.read<ThemeCubit>().state == ThemeMode.dark ? 0 : 1;
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         GestureDetector(
           onTap: () {
             changeIndex(0);
-            themeCubit.switchToDarkMode();
+            context.read<ThemeCubit>().updateTheme(ThemeMode.dark);
           },
           child: ChooseModeOption(
               iconName: AssetsVectors.vectorsMoon,
@@ -46,7 +45,7 @@ class _ChooseModeWidgetState extends State<ChooseModeWidget> {
         GestureDetector(
           onTap: () {
             changeIndex(1);
-            themeCubit.switchToLightMode();
+            context.read<ThemeCubit>().updateTheme(ThemeMode.light);
           },
           child: ChooseModeOption(
               iconName: AssetsVectors.vectorsSun,

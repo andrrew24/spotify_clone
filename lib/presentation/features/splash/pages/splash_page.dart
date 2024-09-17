@@ -36,7 +36,6 @@ class _SplashPageState extends State<SplashPage> {
     await Future.delayed(const Duration(seconds: 2));
     if (mounted) {
       GoRouter.of(context).pushReplacement(kgetStarted);
-      print( "User Status: ${isUserSignedIn()}");
     }
   }
 }

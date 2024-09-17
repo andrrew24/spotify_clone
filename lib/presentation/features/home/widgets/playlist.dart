@@ -57,7 +57,7 @@ class Playlist extends StatelessWidget {
   Widget _songs(List<SongEntity> songs) {
     return ListView.separated(
       shrinkWrap: true,
-      physics: NeverScrollableScrollPhysics(),
+      physics: const NeverScrollableScrollPhysics(),
       itemBuilder: (context, index) {
         return ListTile(
           onTap: () {

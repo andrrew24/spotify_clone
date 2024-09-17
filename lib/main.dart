@@ -1,6 +1,9 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:hydrated_bloc/hydrated_bloc.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:spotify_clone/common/helper/service_locator.dart';
 import 'package:spotify_clone/core/config/constants/app_const.dart';
 import 'package:spotify_clone/core/config/router/app_router.dart';
@@ -19,6 +22,10 @@ void main() async {
   await Hive.initFlutter();
   await initDependences();
   WidgetsFlutterBinding.ensureInitialized();
+  HydratedBloc.storage = await HydratedStorage.build(
+      storageDirectory: kIsWeb
+          ? HydratedStorage.webStorageDirectory
+          : await getApplicationCacheDirectory());
   Bloc.observer = SimpleBlocObserver();
   await Hive.openBox(AppConstants.accessToken);
   runApp(const SpotifyClone());
@@ -34,14 +41,14 @@ class SpotifyClone extends StatelessWidget {
           create: (context) => ThemeCubit(),
         ),
       ],
-      child: BlocBuilder<ThemeCubit, ThemeState>(
-        builder: (context, state) {
+      child: BlocBuilder<ThemeCubit, ThemeMode>(
+        builder: (context, mode) {
           return MaterialApp.router(
             debugShowCheckedModeBanner: false,
             routerConfig: appRouter,
-            theme: state == ThemeState.light
-                ? AppTheme.lightTheme
-                : AppTheme.darkTheme,
+            theme: AppTheme.lightTheme,
+            darkTheme: AppTheme.darkTheme,
+            themeMode: mode,
           );
         },
       ),

@@ -50,10 +50,9 @@ class BasicAppBar extends StatelessWidget implements PreferredSizeWidget {
           child: Icon(
             leadinIcon,
             size: 15,
-            color:
-                BlocProvider.of<ThemeCubit>(context).state == ThemeState.light
-                    ? Colors.black
-                    : Colors.white,
+            color: BlocProvider.of<ThemeCubit>(context).state == ThemeMode.light
+                ? Colors.black
+                : Colors.white,
           ),
         ),
       ),
