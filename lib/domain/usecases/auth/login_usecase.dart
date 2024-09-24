@@ -7,7 +7,7 @@ import 'package:spotify_clone/domain/repos/auth/auth_repo.dart';
 
 class LoginUsecase implements Usecase<Either, SigninUserModel> {
   @override
-  Future<Either> call({SigninUserModel? userId}) async {
-    return await serviceLocator<AuthRepo>().signin(userId!);
+  Future<Either> call({SigninUserModel? param}) async {
+    return await serviceLocator<AuthRepo>().signin(param!);
   }
 }

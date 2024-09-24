@@ -32,4 +32,9 @@ class AuthRepoImpl implements AuthRepo {
       return Left(ServerFailure.fromPocketBase(e));
     }
   }
+
+  @override
+  Future<void> signout() async {
+    await authRemoteDataSource.signout();
+  }
 }

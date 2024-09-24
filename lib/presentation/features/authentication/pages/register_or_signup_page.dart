@@ -40,7 +40,7 @@ class RegisterOrSignupPage extends StatelessWidget {
           ),
           Align(
             alignment: Alignment.bottomLeft,
-            child: Image.asset(AssetsImages.imagesAuthBg),
+            child: Image.asset(Assets.imagesAuthBg),
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 15),

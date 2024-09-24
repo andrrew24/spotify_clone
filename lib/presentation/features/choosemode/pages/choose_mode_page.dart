@@ -21,7 +21,7 @@ class ChooseModePage extends StatelessWidget {
         decoration: const BoxDecoration(
           image: DecorationImage(
             fit: BoxFit.fill,
-            image: AssetImage(AssetsImages.imagesChooseModeBg),
+            image: AssetImage(Assets.imagesChooseModeBg),
           ),
         ),
         child: Column(

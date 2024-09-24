@@ -20,7 +20,7 @@ class GetStartedPage extends StatelessWidget {
         decoration: const BoxDecoration(
           image: DecorationImage(
             fit: BoxFit.fill,
-            image: AssetImage(AssetsImages.imagesIntroBg),
+            image: AssetImage(Assets.imagesIntroBg),
           ),
         ),
         child: Column(

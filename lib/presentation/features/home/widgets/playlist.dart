@@ -91,15 +91,6 @@ class Playlist extends StatelessWidget {
                   style: AppStyles.styleRegular15(),
                 ),
                 const Gap(5),
-                // IconButton(
-                //   icon: Icon(
-                //     songs[index].isFavorite
-                //         ? Icons.favorite
-                //         : Icons.favorite_outline_outlined,
-                //     color: AppColors.darkGrey,
-                //   ),
-                //   onPressed: () {},
-                // )
                 FavButton(
                   song: songs[index],
                 )

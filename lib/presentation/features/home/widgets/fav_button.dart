@@ -18,12 +18,13 @@ class FavButton extends StatelessWidget {
         builder: (context, state) {
           if (state is AddRemoveFavSongInitial) {
             return IconButton(
-              icon: Icon(
-                song.isFavorite
-                    ? Icons.favorite
-                    : Icons.favorite_outline_outlined,
-                color: AppColors.darkGrey,
-              ),
+              icon: song.isFavorite
+                  ? const Icon(
+                      Icons.favorite,
+                      color: AppColors.primaryColor,
+                    )
+                  : const Icon(Icons.favorite_outline_outlined,
+                      color: AppColors.darkGrey),
               onPressed: () {
                 context
                     .read<AddRemoveFavSongCubit>()
@@ -33,12 +34,13 @@ class FavButton extends StatelessWidget {
           }
           if (state is AddRemoveFavSongUpdated) {
             return IconButton(
-              icon: Icon(
-                state.isFavorite
-                    ? Icons.favorite
-                    : Icons.favorite_outline_outlined,
-                color: AppColors.darkGrey,
-              ),
+              icon: state.isFavorite
+                  ? const Icon(
+                      Icons.favorite,
+                      color: AppColors.primaryColor,
+                    )
+                  : const Icon(Icons.favorite_outline_outlined,
+                      color: AppColors.darkGrey),
               onPressed: () {
                 context
                     .read<AddRemoveFavSongCubit>()

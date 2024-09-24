@@ -8,7 +8,9 @@ import 'package:spotify_clone/core/config/constants/app_const.dart';
 import 'package:spotify_clone/core/config/assets/app_styles.dart';
 import 'package:spotify_clone/core/config/theme/app_colors.dart';
 import 'package:spotify_clone/common/widgets/app_bar/basic_appbar.dart';
+import 'package:spotify_clone/core/constants/const.dart';
 import 'package:spotify_clone/domain/entities/song_entity.dart';
+import 'package:spotify_clone/presentation/features/home/widgets/fav_button.dart';
 import 'package:spotify_clone/presentation/features/play_song/manager/play_song_cubit/play_song_cubit.dart';
 
 class PlaySongPage extends StatelessWidget {
@@ -18,28 +20,26 @@ class PlaySongPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final state = GoRouterState.of(context);
     final song = state.extra as SongEntity;
-    return Scaffold(
-      appBar: BasicAppBar(
-        leadingonPressed: () {
-          GoRouter.of(context).pop();
-        },
-        hasBG: true,
-        leadinIcon: Icons.arrow_back_ios_new_rounded,
-        title: Text(
-          "Now Playing",
-          style: AppStyles.styleBold18(),
-        ),
-        trailingIcon: FontAwesomeIcons.ellipsisVertical,
-        trailingonPressed: () {},
-      ),
-      body: BlocProvider(
-        create: (context) => PlaySongCubit()
+    return BlocProvider(
+       create: (context) => PlaySongCubit()
           ..loadSong(
             "${AppConstants.appApi}${song.id}/${song.songLink}",
-            // "http://10.0.2.2:8090/api/files/2tw7h5a5q8bjqyj/3shktlx8jeacjzq/the_weeknd_save_your_tears_remix_1xpxknBNlQ.mp3?token="
           )
           ..playOrPauseSong(),
-        child: SingleChildScrollView(
+      child: Scaffold(
+        appBar: BasicAppBar(
+          leadingonPressed: () {
+            GoRouter.of(context).pushReplacement(kHomePage);
+      
+          },
+          hasBG: true,
+          leadinIcon: Icons.arrow_back_ios_new_rounded,
+          title: Text(
+            "Now Playing",
+            style: AppStyles.styleBold18(),
+          ),
+        ),
+        body: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.all(10),
             child: Column(
@@ -69,11 +69,7 @@ class PlaySongPage extends StatelessWidget {
                         ),
                       ],
                     ),
-                    IconButton(
-                      icon: const Icon(Icons.favorite_outline_outlined),
-                      onPressed: () {},
-                      color: AppColors.darkGrey,
-                    )
+                    FavButton(song: song)
                   ],
                 ),
                 const Gap(20),

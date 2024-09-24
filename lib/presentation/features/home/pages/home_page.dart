@@ -9,8 +9,12 @@ import 'package:spotify_clone/core/config/assets/vectors.dart';
 import 'package:spotify_clone/core/config/theme/app_colors.dart';
 import 'package:spotify_clone/common/widgets/app_bar/basic_appbar.dart';
 import 'package:spotify_clone/data/sources/auth/auth_local_data_source.dart';
+import 'package:spotify_clone/data/sources/auth/auth_remote_data_source.dart';
+import 'package:spotify_clone/domain/usecases/auth/sign_out_usecase.dart';
+import 'package:spotify_clone/presentation/features/choosemode/manager/cubit/theme_cubit.dart';
 import 'package:spotify_clone/presentation/features/home/manager/get_new_songs_cubit/get_new_songs_cubit.dart';
 import 'package:spotify_clone/presentation/features/home/widgets/custom_card.dart';
+import 'package:spotify_clone/presentation/features/home/widgets/home_basic_app_bar.dart';
 import 'package:spotify_clone/presentation/features/home/widgets/new_songs_list.dart';
 import 'package:spotify_clone/presentation/features/home/widgets/playlist.dart';
 
@@ -34,11 +38,26 @@ class _HomePageState extends State<HomePage>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: BasicAppBar(
-        trailingIcon: FontAwesomeIcons.ellipsisVertical,
-        trailingonPressed: () async {
-          print(pb.authStore.model.id);
-        },
+      appBar: HomeBasicAppBar(
+        trailing: PopupMenuButton(
+          itemBuilder: (context) => [
+            PopupMenuItem(
+              child: Text("Logout"),
+              onTap: () {
+                serviceLocator<SignOutUsecase>().call(param: context);
+              },
+            ),
+            // PopupMenuItem(
+            //   child: Text("Switch Theme"),
+            //   onTap: () {
+            //     final theme = ThemeMode.system == ThemeMode.dark
+            //         ? ThemeMode.light
+            //         : ThemeMode.dark;
+            //     context.read<ThemeCubit>().updateTheme(theme);
+            //   },
+            // ),
+          ],
+        ),
         title: SvgPicture.asset(
           AssetsVectors.vectorsSpotifyLogo,
           height: 30,

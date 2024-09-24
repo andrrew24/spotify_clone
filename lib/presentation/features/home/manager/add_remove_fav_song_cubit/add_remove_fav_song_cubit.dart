@@ -16,7 +16,6 @@ class AddRemoveFavSongCubit extends Cubit<AddRemoveFavSongState> {
     result.fold(
       (l) {},
       (isFavorite) {
-        print(isFavorite);
         emit(
           AddRemoveFavSongUpdated(isFavorite: isFavorite),
         );

@@ -12,6 +12,7 @@ import 'package:spotify_clone/domain/repos/auth/auth_repo.dart';
 import 'package:spotify_clone/domain/repos/song/song_repo.dart';
 import 'package:spotify_clone/domain/usecases/auth/login_usecase.dart';
 import 'package:spotify_clone/domain/usecases/auth/register_usecase.dart';
+import 'package:spotify_clone/domain/usecases/auth/sign_out_usecase.dart';
 import 'package:spotify_clone/domain/usecases/song/add_or_remove_fav_song_usecase.dart';
 import 'package:spotify_clone/domain/usecases/song/get_new_song_usecase.dart';
 import 'package:spotify_clone/domain/usecases/song/get_playlist_use_case.dart';
@@ -36,9 +37,8 @@ Future<void> init() async {
 }
 
 Future<void> initDependences() async {
-
-  serviceLocator.registerSingleton<AuthRemoteDataSource>(
-      AuthRemoteDataSourceImpl());
+  serviceLocator
+      .registerSingleton<AuthRemoteDataSource>(AuthRemoteDataSourceImpl());
 
   serviceLocator.registerSingleton<AuthRepo>(AuthRepoImpl(
       authRemoteDataSource: serviceLocator<AuthRemoteDataSource>()));
@@ -53,8 +53,8 @@ Future<void> initDependences() async {
   serviceLocator.registerSingleton<LoginCubit>(
       LoginCubit(serviceLocator<LoginUsecase>()));
 
-  serviceLocator.registerSingleton<SongRemoteDataSource>(
-      SongRemoteDataSourceImpl());
+  serviceLocator
+      .registerSingleton<SongRemoteDataSource>(SongRemoteDataSourceImpl());
 
   serviceLocator.registerSingleton<SongRepo>(SongRepoImpl(
       songRemoteDataSource: serviceLocator<SongRemoteDataSource>()));
@@ -65,4 +65,6 @@ Future<void> initDependences() async {
 
   serviceLocator.registerSingleton<AddOrRemoveFavSongUsecase>(
       AddOrRemoveFavSongUsecase());
+
+  serviceLocator.registerSingleton<SignOutUsecase>(SignOutUsecase());
 }

@@ -16,7 +16,7 @@ class RegisterCubit extends Cubit<RegisterState> {
   Future<void> registerUser(CreateUserModel user) async {
     emit(RegisterLoading());
     try {
-      var result = await registerUsecase.call(userId: user);
+      var result = await registerUsecase.call(param: user);
       result.fold(
         (l) {
           emit(RegisterFailure(errorMessage: l.errorMessage));

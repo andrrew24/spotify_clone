@@ -72,7 +72,7 @@ class SongRemoteDataSourceImpl extends SongRemoteDataSource {
       await pb.collection('users').update(userId, body: {
         'favorite_songs': favoriteSongs,
       });
-      return Right(isFavorite);
+      return  Right(isFavorite);
     } on ClientException {
       return const Left(false);
     }

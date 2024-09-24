@@ -5,7 +5,7 @@ import 'package:spotify_clone/domain/repos/song/song_repo.dart';
 
 class GetNewSongsUseCase implements Usecase<Either, dynamic> {
   @override
-  Future<Either> call({userId}) async {
+  Future<Either> call({param}) async {
     return await serviceLocator<SongRepo>().getNewSongs();
   }
 }

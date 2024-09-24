@@ -10,7 +10,7 @@ import 'package:spotify_clone/data/sources/auth/auth_local_data_source.dart';
 abstract class AuthRemoteDataSource {
   Future<void> signin(SigninUserModel model);
   Future<void> register(CreateUserModel model);
-  signout();
+  Future<void> signout();
 }
 
 class AuthRemoteDataSourceImpl extends AuthRemoteDataSource {
@@ -33,7 +33,7 @@ class AuthRemoteDataSourceImpl extends AuthRemoteDataSource {
   }
 
   @override
-  signout() async {
+  Future<void> signout() async {
     pb.authStore.clear();
   }
 }
