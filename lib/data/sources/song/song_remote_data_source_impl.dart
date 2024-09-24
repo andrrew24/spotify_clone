@@ -6,7 +6,6 @@ import 'package:spotify_clone/data/sources/song/song_remote_data_source.dart';
 import 'package:spotify_clone/domain/entities/song_entity.dart';
 
 class SongRemoteDataSourceImpl extends SongRemoteDataSource {
-
   SongRemoteDataSourceImpl();
 
   @override
@@ -23,8 +22,9 @@ class SongRemoteDataSourceImpl extends SongRemoteDataSource {
       );
 
       for (var record in body.items) {
-        var songModel = SongModel.fromJson(record.data, record.id);
-
+        bool isFavorite =
+            await isFavoriteSong(pb.authStore.model.id, record.id);
+        var songModel = SongModel.fromJson(record.data, record.id, isFavorite);
         songs.add(songModel.toEntity());
       }
       return Right(songs);
@@ -44,8 +44,9 @@ class SongRemoteDataSourceImpl extends SongRemoteDataSource {
       );
 
       for (var record in body) {
-        var songModel = SongModel.fromJson(record.data, record.id);
-
+        bool isFavorite =
+            await isFavoriteSong(pb.authStore.model.id, record.id);
+        var songModel = SongModel.fromJson(record.data, record.id, isFavorite);
         songs.add(songModel.toEntity());
       }
       return Right(songs);
@@ -56,6 +57,7 @@ class SongRemoteDataSourceImpl extends SongRemoteDataSource {
 
   @override
   Future<Either> addOrRemoveFavoriteSongs(String userId, String songId) async {
+    bool isFavorite = false;
     try {
       final userRecord = await pb.collection('users').getOne(userId);
       List<dynamic> favoriteSongs = userRecord.data['favorite_songs'] ?? [];
@@ -64,14 +66,15 @@ class SongRemoteDataSourceImpl extends SongRemoteDataSource {
         favoriteSongs.remove(songId);
       } else {
         favoriteSongs.add(songId);
+        isFavorite = true;
       }
 
       await pb.collection('users').update(userId, body: {
         'favorite_songs': favoriteSongs,
       });
-      return const Right("Fav Songs Updated Succefully");
-    } on ClientException catch (e) {
-      return Left("Fav Songs Update Failed :${e.toString()}");
+      return Right(isFavorite);
+    } on ClientException {
+      return const Left(false);
     }
   }
 
@@ -88,16 +91,15 @@ class SongRemoteDataSourceImpl extends SongRemoteDataSource {
   }
 
   @override
-  Future<Either<dynamic, bool>> isFavoriteSong(
-      String userId, String songId) async {
+  Future<bool> isFavoriteSong(String userId, String songId) async {
     try {
       final userRecord = await pb.collection('users').getOne(userId);
       List<dynamic> favoriteSongs = userRecord.data['favorite_songs'] ?? [];
 
       bool isFavorite = favoriteSongs.contains(songId);
-      return Right(isFavorite);
-    } on ClientException catch (e) {
-      return Left("isFavoriteSong Fail:${e.toString()}");
+      return isFavorite;
+    } on ClientException {
+      return false;
     }
   }
 }

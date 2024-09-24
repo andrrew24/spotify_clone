@@ -10,7 +10,8 @@ import 'package:spotify_clone/core/config/theme/app_colors.dart';
 import 'package:spotify_clone/core/constants/const.dart';
 import 'package:spotify_clone/domain/entities/song_entity.dart';
 import 'package:spotify_clone/domain/usecases/song/get_playlist_use_case.dart';
-import 'package:spotify_clone/presentation/features/home/manager/_get_playlist_cubit/get_play_list_cubit.dart';
+import 'package:spotify_clone/presentation/features/home/manager/get_playlist_cubit/get_play_list_cubit.dart';
+import 'package:spotify_clone/presentation/features/home/widgets/fav_button.dart';
 
 class Playlist extends StatelessWidget {
   const Playlist({super.key});
@@ -90,12 +91,17 @@ class Playlist extends StatelessWidget {
                   style: AppStyles.styleRegular15(),
                 ),
                 const Gap(5),
-                IconButton(
-                  icon: const Icon(
-                    Icons.favorite_border,
-                    color: AppColors.darkGrey,
-                  ),
-                  onPressed: () {},
+                // IconButton(
+                //   icon: Icon(
+                //     songs[index].isFavorite
+                //         ? Icons.favorite
+                //         : Icons.favorite_outline_outlined,
+                //     color: AppColors.darkGrey,
+                //   ),
+                //   onPressed: () {},
+                // )
+                FavButton(
+                  song: songs[index],
                 )
               ],
             ),

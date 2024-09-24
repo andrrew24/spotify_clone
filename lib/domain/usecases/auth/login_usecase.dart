@@ -6,9 +6,8 @@ import 'package:spotify_clone/data/models/auth/signin_user_model.dart';
 import 'package:spotify_clone/domain/repos/auth/auth_repo.dart';
 
 class LoginUsecase implements Usecase<Either, SigninUserModel> {
-
   @override
-  Future<Either> call({SigninUserModel? params}) async {
-    return await serviceLocator<AuthRepo>().signin(params!);
+  Future<Either> call({SigninUserModel? userId}) async {
+    return await serviceLocator<AuthRepo>().signin(userId!);
   }
 }

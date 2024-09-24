@@ -30,7 +30,7 @@ class SongRepoImpl extends SongRepo {
   }
 
   @override
-  Future<Either<dynamic,bool>> isFavoriteSong(String userId, String songId) async {
+  Future<bool> isFavoriteSong(String userId, String songId) async {
     return _songRemoteDataSource.isFavoriteSong(userId, songId);
   }
 }

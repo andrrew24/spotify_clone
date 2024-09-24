@@ -7,7 +7,7 @@ import 'package:spotify_clone/domain/repos/auth/auth_repo.dart';
 
 class RegisterUsecase implements Usecase<Either, CreateUserModel> {
   @override
-  Future<Either> call({CreateUserModel? params}) async {
-    return await serviceLocator<AuthRepo>().register(params!);
+  Future<Either> call({CreateUserModel? userId}) async {
+    return await serviceLocator<AuthRepo>().register(userId!);
   }
 }

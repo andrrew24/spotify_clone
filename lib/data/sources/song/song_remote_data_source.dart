@@ -11,5 +11,5 @@ abstract class SongRemoteDataSource {
   Future<Either> getPlaylist();
   Future<Either> addOrRemoveFavoriteSongs(String userId, String songId);
   Future<Either> getAllFavSongs(String userId);
-  Future<Either<dynamic,bool>> isFavoriteSong(String userId, String songId);
+  Future<bool> isFavoriteSong(String userId, String songId);
 }

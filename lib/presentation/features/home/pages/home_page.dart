@@ -37,7 +37,7 @@ class _HomePageState extends State<HomePage>
       appBar: BasicAppBar(
         trailingIcon: FontAwesomeIcons.ellipsisVertical,
         trailingonPressed: () async {
-          print(pb.authStore.token);
+          print(pb.authStore.model.id);
         },
         title: SvgPicture.asset(
           AssetsVectors.vectorsSpotifyLogo,

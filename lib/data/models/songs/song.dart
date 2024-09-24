@@ -11,6 +11,7 @@ class SongModel {
   String? cover;
   String? song;
   String? artist;
+  bool? isFavorite;
   DateTime? releaseDate;
   num? duration;
 
@@ -25,12 +26,18 @@ class SongModel {
     this.song,
     this.artist,
     this.releaseDate,
+    this.isFavorite,
     this.duration,
   });
 
-  factory SongModel.fromJson(Map<String, dynamic> json, String songId) =>
+  factory SongModel.fromJson(
+    Map<String, dynamic> json,
+    String songId,
+    bool isFavorite,
+  ) =>
       SongModel(
         id: songId,
+        isFavorite: isFavorite,
         collectionId: json['collectionId'] as String?,
         collectionName: json['collectionName'] as String?,
         created: json['created'] as String?,
@@ -48,7 +55,8 @@ extension SongModelX on SongModel {
   SongEntity toEntity() {
     return SongEntity(
         coverLink: cover!,
-        songLink:song!,
+        isFavorite: isFavorite!,
+        songLink: song!,
         title: title!,
         id: id,
         artist: artist!,
