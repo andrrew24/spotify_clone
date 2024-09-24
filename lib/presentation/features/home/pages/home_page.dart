@@ -3,10 +3,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:gap/gap.dart';
+import 'package:spotify_clone/common/helper/service_locator.dart';
 import 'package:spotify_clone/core/config/assets/app_styles.dart';
 import 'package:spotify_clone/core/config/assets/vectors.dart';
 import 'package:spotify_clone/core/config/theme/app_colors.dart';
 import 'package:spotify_clone/common/widgets/app_bar/basic_appbar.dart';
+import 'package:spotify_clone/data/sources/auth/auth_local_data_source.dart';
 import 'package:spotify_clone/presentation/features/home/manager/get_new_songs_cubit/get_new_songs_cubit.dart';
 import 'package:spotify_clone/presentation/features/home/widgets/custom_card.dart';
 import 'package:spotify_clone/presentation/features/home/widgets/new_songs_list.dart';
@@ -34,7 +36,9 @@ class _HomePageState extends State<HomePage>
     return Scaffold(
       appBar: BasicAppBar(
         trailingIcon: FontAwesomeIcons.ellipsisVertical,
-        trailingonPressed: () {},
+        trailingonPressed: () async {
+          print(pb.authStore.token);
+        },
         title: SvgPicture.asset(
           AssetsVectors.vectorsSpotifyLogo,
           height: 30,

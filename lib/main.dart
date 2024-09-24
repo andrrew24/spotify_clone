@@ -9,6 +9,7 @@ import 'package:spotify_clone/core/config/constants/app_const.dart';
 import 'package:spotify_clone/core/config/router/app_router.dart';
 import 'package:spotify_clone/core/config/theme/app_theme.dart';
 import 'package:spotify_clone/core/observer/simple_bloc_observer.dart';
+import 'package:spotify_clone/data/sources/auth/auth_remote_data_source.dart';
 import 'package:spotify_clone/domain/usecases/auth/login_usecase.dart';
 import 'package:spotify_clone/domain/usecases/auth/register_usecase.dart';
 import 'package:spotify_clone/domain/usecases/song/get_new_song_usecase.dart';
@@ -20,14 +21,15 @@ import 'package:spotify_clone/presentation/features/home/pages/home_page.dart';
 
 void main() async {
   await Hive.initFlutter();
-  await initDependences();
+  await Hive.openBox(AppConstants.kAuth);
   WidgetsFlutterBinding.ensureInitialized();
   HydratedBloc.storage = await HydratedStorage.build(
       storageDirectory: kIsWeb
           ? HydratedStorage.webStorageDirectory
           : await getApplicationCacheDirectory());
   Bloc.observer = SimpleBlocObserver();
-  await Hive.openBox(AppConstants.accessToken);
+ await init();
+ await initDependences();
   runApp(const SpotifyClone());
 }
 

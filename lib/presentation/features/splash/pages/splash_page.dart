@@ -5,7 +5,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:spotify_clone/core/config/assets/vectors.dart';
 import 'package:spotify_clone/core/constants/const.dart';
-import 'package:spotify_clone/presentation/features/authentication/manager/token/token_manager.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({super.key});

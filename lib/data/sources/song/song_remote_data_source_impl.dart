@@ -4,12 +4,10 @@ import 'package:spotify_clone/common/helper/service_locator.dart';
 import 'package:spotify_clone/data/models/songs/song.dart';
 import 'package:spotify_clone/data/sources/song/song_remote_data_source.dart';
 import 'package:spotify_clone/domain/entities/song_entity.dart';
-import 'package:spotify_clone/presentation/features/authentication/manager/token/token_manager.dart';
 
 class SongRemoteDataSourceImpl extends SongRemoteDataSource {
-  final PocketBase pb;
 
-  SongRemoteDataSourceImpl({required this.pb});
+  SongRemoteDataSourceImpl();
 
   @override
   Future<Either> fetchNewSongs() async {
@@ -20,7 +18,7 @@ class SongRemoteDataSourceImpl extends SongRemoteDataSource {
         page: 1,
         perPage: 3,
         headers: {
-          'Authorization': 'Bearer ${getUserToken()}',
+          'Authorization': 'Bearer ${pb.authStore.token}',
         },
       );
 
@@ -41,7 +39,7 @@ class SongRemoteDataSourceImpl extends SongRemoteDataSource {
       List<SongEntity> songs = [];
       final body = await pb.collection('songs').getFullList(
         headers: {
-          'Authorization': 'Bearer ${getUserToken()}',
+          'Authorization': 'Bearer ${pb.authStore.token}',
         },
       );
 

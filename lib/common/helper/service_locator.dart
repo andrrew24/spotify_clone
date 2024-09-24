@@ -3,6 +3,7 @@ import 'package:pocketbase/pocketbase.dart';
 import 'package:spotify_clone/core/config/constants/app_const.dart';
 import 'package:spotify_clone/data/repos/auth/auth_repo_impl.dart';
 import 'package:spotify_clone/data/repos/song/song_repo_impl.dart';
+import 'package:spotify_clone/data/sources/auth/auth_local_data_source.dart';
 import 'package:spotify_clone/data/sources/auth/auth_remote_data_source.dart';
 import 'package:spotify_clone/data/sources/song/song_remote_data_source.dart';
 import 'package:spotify_clone/data/sources/song/song_remote_data_source_impl.dart';
@@ -19,13 +20,25 @@ import 'package:spotify_clone/presentation/features/authentication/manager/regis
 
 final serviceLocator = GetIt.instance;
 
-Future<void> initDependences() async {
-  serviceLocator.registerLazySingleton<PocketBase>(
-    () => PocketBase(AppConstants.localHost),
+late PocketBase pb;
+
+Future<void> init() async {
+  final localStorage = AuthLocalDataSourceImpl();
+  final token = await localStorage.getToken();
+
+  final customAuthStore = AsyncAuthStore(
+    initial: token,
+    clear: localStorage.deleteToken,
+    save: localStorage.setToken,
   );
 
+  pb = PocketBase(AppConstants.baseUrl, authStore: customAuthStore);
+}
+
+Future<void> initDependences() async {
+
   serviceLocator.registerSingleton<AuthRemoteDataSource>(
-      AuthRemoteDataSourceImpl(pb: serviceLocator<PocketBase>()));
+      AuthRemoteDataSourceImpl());
 
   serviceLocator.registerSingleton<AuthRepo>(AuthRepoImpl(
       authRemoteDataSource: serviceLocator<AuthRemoteDataSource>()));
@@ -41,7 +54,7 @@ Future<void> initDependences() async {
       LoginCubit(serviceLocator<LoginUsecase>()));
 
   serviceLocator.registerSingleton<SongRemoteDataSource>(
-      SongRemoteDataSourceImpl(pb: serviceLocator<PocketBase>()));
+      SongRemoteDataSourceImpl());
 
   serviceLocator.registerSingleton<SongRepo>(SongRepoImpl(
       songRemoteDataSource: serviceLocator<SongRemoteDataSource>()));
