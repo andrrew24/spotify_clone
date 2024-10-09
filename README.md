@@ -90,14 +90,14 @@ Before starting, make sure you have the following installed:
 
 ## 📱 Screenshots
 
-![Splash Screen](assets\screenshots\Screenshot_1728498189-portrait.png)
-![Get Started Screen](assets\screenshots\Screenshot_1728497908-portrait.png)
-![Choose Mode Screen](assets\screenshots\Screenshot_1728498013-portrait.png)
-![Login Or Register Screen](assets\screenshots\Screenshot_1728498026-portrait.png)
-![Login Screen](assets\screenshots\Screenshot_1728498040-portrait.png)
-![Register Screen](assets\screenshots\Screenshot_1728498037-portrait.png)
-![Home Screen](assets\screenshots\Screenshot_1728498089-portrait.png)
-![Player Screen](assets\screenshots\Screenshot_1728498099-portrait.png)
+![Splash Screen](assets/screenshots/Screenshot_1728498189-portrait.png)
+![Get Started Screen](assets/screenshots/Screenshot_1728497908-portrait.png)
+![Choose Mode Screen](assets/screenshots/Screenshot_1728498013-portrait.png)
+![Login Or Register Screen](assets/screenshots/Screenshot_1728498026-portrait.png)
+![Login Screen](assets/screenshots/Screenshot_1728498040-portrait.png)
+![Register Screen](assets/screenshots/Screenshot_1728498037-portrait.png)
+![Home Screen](assets/screenshots/Screenshot_1728498089-portrait.png)
+![Player Screen](assets/screenshots/Screenshot_1728498099-portrait.png)
 
 ---
 
