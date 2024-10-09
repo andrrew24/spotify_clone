@@ -4,7 +4,6 @@ import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 import 'package:spotify_clone/common/functions/fuctions.dart';
 import 'package:spotify_clone/common/widgets/button/basic_app_button.dart';
-import 'package:spotify_clone/common/widgets/snackbar/custom_snack_bar.dart';
 import 'package:spotify_clone/core/config/theme/app_colors.dart';
 import 'package:spotify_clone/core/constants/const.dart';
 import 'package:spotify_clone/data/models/auth/create_user_model.dart';
@@ -30,17 +29,13 @@ class _RegisterFormState extends State<RegisterForm> {
       listener: (context, state) {
         if (state is RegisterFailure) {
           isLoading = false;
-          ScaffoldMessenger.of(context)
-              .showSnackBar(buildSnackBar("Failure", state.errorMessage));
+
         }
         if (state is RegisterLoading) {
           isLoading = true;
         }
         if (state is RegisterSuccess) {
           isLoading = false;
-          ScaffoldMessenger.of(context)
-              .showSnackBar(buildSnackBar("Success", "Register success"));
-
           GoRouter.of(context).pushReplacement(kHomePage);
         }
       },

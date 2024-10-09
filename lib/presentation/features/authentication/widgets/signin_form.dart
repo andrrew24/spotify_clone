@@ -8,7 +8,6 @@ import 'package:pocketbase/pocketbase.dart';
 import 'package:spotify_clone/common/functions/fuctions.dart';
 import 'package:spotify_clone/common/helper/service_locator.dart';
 import 'package:spotify_clone/common/widgets/button/basic_app_button.dart';
-import 'package:spotify_clone/common/widgets/snackbar/custom_snack_bar.dart';
 import 'package:spotify_clone/core/config/assets/app_styles.dart';
 import 'package:spotify_clone/core/config/theme/app_colors.dart';
 import 'package:spotify_clone/core/constants/const.dart';
@@ -39,8 +38,6 @@ class _SigninFormState extends State<SigninForm> {
       listener: (context, state) {
         if (state is LoginFailure) {
           isLoading = false;
-          ScaffoldMessenger.of(context)
-              .showSnackBar(buildSnackBar("Failure", state.errorMessage));
         }
         if (state is LoginLoading) {
           isLoading = true;
@@ -59,13 +56,11 @@ class _SigninFormState extends State<SigninForm> {
               CustomTextField(
                 hintText: "Enter email or name",
                 controller: emailController,
-                // validator: (value) => validateEmail(value) ,
               ),
               const Gap(15),
               CustomTextField(
                 hintText: "Password",
                 controller: passwordController,
-                // validator: (p0) => null,
               ),
               const Gap(20),
               Align(

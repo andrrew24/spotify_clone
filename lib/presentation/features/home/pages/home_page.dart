@@ -42,7 +42,7 @@ class _HomePageState extends State<HomePage>
         trailing: PopupMenuButton(
           itemBuilder: (context) => [
             PopupMenuItem(
-              child: Text("Logout"),
+              child:  const Text("Logout"),
               onTap: () {
                 serviceLocator<SignOutUsecase>().call(param: context);
               },
