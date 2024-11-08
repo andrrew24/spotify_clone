@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:gap/gap.dart';
+import 'package:spotify_clone/common/helper/is_dark_mode.dart';
 import 'package:spotify_clone/common/helper/service_locator.dart';
 import 'package:spotify_clone/core/config/assets/app_styles.dart';
 import 'package:spotify_clone/core/config/assets/vectors.dart';
@@ -42,20 +43,11 @@ class _HomePageState extends State<HomePage>
         trailing: PopupMenuButton(
           itemBuilder: (context) => [
             PopupMenuItem(
-              child:  const Text("Logout"),
+              child: const Text("Logout"),
               onTap: () {
                 serviceLocator<SignOutUsecase>().call(param: context);
               },
             ),
-            // PopupMenuItem(
-            //   child: Text("Switch Theme"),
-            //   onTap: () {
-            //     final theme = ThemeMode.system == ThemeMode.dark
-            //         ? ThemeMode.light
-            //         : ThemeMode.dark;
-            //     context.read<ThemeCubit>().updateTheme(theme);
-            //   },
-            // ),
           ],
         ),
         title: SvgPicture.asset(
@@ -63,9 +55,13 @@ class _HomePageState extends State<HomePage>
           height: 30,
           width: 30,
         ),
-        leadinIcon: FontAwesomeIcons.magnifyingGlass,
         hasBG: false,
-        leadingonPressed: () {},
+        leadinIcon: isLightMode(context) ? Icons.sunny : Icons.nightlight_round,
+        leadingonPressed: () {
+          context.read<ThemeCubit>().updateTheme(
+              isLightMode(context) ? ThemeMode.dark : ThemeMode.light);
+          setState(() {});
+        },
       ),
       body: SingleChildScrollView(
         child: Column(

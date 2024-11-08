@@ -10,6 +10,7 @@ import 'package:spotify_clone/core/config/constants/app_const.dart';
 import 'package:spotify_clone/core/config/theme/app_colors.dart';
 import 'package:spotify_clone/domain/entities/song_entity.dart';
 import 'package:spotify_clone/domain/usecases/song/get_playlist_use_case.dart';
+import 'package:spotify_clone/presentation/features/choosemode/manager/cubit/theme_cubit.dart';
 import 'package:spotify_clone/presentation/features/home/manager/get_playlist_cubit/get_play_list_cubit.dart';
 import 'package:spotify_clone/presentation/features/home/widgets/fav_button.dart';
 
@@ -62,17 +63,23 @@ class Playlist extends StatelessWidget {
       itemBuilder: (context, index) {
         return ListTile(
           onTap: () {
-            GoRouter.of(context).push(AppConstants.kPlaySongPage, extra: songs[index]);
+            GoRouter.of(context)
+                .push(AppConstants.kPlaySongPage, extra: songs[index]);
           },
-          leading: Container(
-            height: 40,
-            width: 40,
-            decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: isLightMode(context)
-                    ? AppColors.lightGrey
-                    : AppColors.darkGrey),
-            child: const Icon(Icons.play_arrow_rounded),
+          leading: BlocBuilder<ThemeCubit, ThemeMode>(
+            builder: (context, state) {
+              return Container(
+                height: 40,
+                width: 40,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: isLightMode(context)
+                      ? AppColors.lightGrey
+                      : AppColors.darkGrey,
+                ),
+                child: const Icon(Icons.play_arrow_rounded),
+              );
+            },
           ),
           title: Text(
             songs[index].title,

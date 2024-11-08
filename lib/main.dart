@@ -22,16 +22,21 @@ import 'package:spotify_clone/presentation/features/home/pages/home_page.dart';
 
 void main() async {
   await Hive.initFlutter();
+  // open hive box for handling user token
   await Hive.openBox(AppConstants.kAuth);
   // load variables in .env file (placed in the root project folder)
   await dotenv.load(fileName: ".env");
   WidgetsFlutterBinding.ensureInitialized();
+  // used hydrated bloc to save theme mode state
   HydratedBloc.storage = await HydratedStorage.build(
       storageDirectory: kIsWeb
           ? HydratedStorage.webStorageDirectory
           : await getApplicationCacheDirectory());
+  // used bloc observer to observe app different states
   Bloc.observer = SimpleBlocObserver();
+  // initialize pocketbase instance to handle user auth
   await initPocketBase();
+  // initialize app dependencies
   await initDependences();
   runApp(const SpotifyClone());
 }

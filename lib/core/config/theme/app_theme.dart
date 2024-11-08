@@ -4,9 +4,10 @@ import 'package:spotify_clone/core/config/theme/app_colors.dart';
 
 class AppTheme {
   static final lightTheme = ThemeData(
-    splashColor: Colors.transparent,
-    highlightColor: Colors.transparent,
-    hoverColor: Colors.transparent,
+
+    // splashColor: Colors.transparent,
+    // highlightColor: Colors.transparent,
+    // hoverColor: Colors.transparent,
     brightness: Brightness.light,
     primaryColor: AppColors.primaryColor,
     textButtonTheme: TextButtonThemeData(
@@ -29,12 +30,11 @@ class AppTheme {
   );
 
   static final darkTheme = ThemeData(
-    splashColor: Colors.transparent,
-    highlightColor: Colors.transparent,
-    hoverColor: Colors.transparent,
+    // splashColor: Colors.transparent,
+    // highlightColor: Colors.transparent,
+    // hoverColor: Colors.transparent,
     brightness: Brightness.dark,
     primaryColor: AppColors.primaryColor,
-    scaffoldBackgroundColor: AppColors.darkBackground,
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
         backgroundColor: AppColors.primaryColor,

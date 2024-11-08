@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
+import 'package:spotify_clone/common/helper/is_dark_mode.dart';
 import 'package:spotify_clone/core/config/assets/vectors.dart';
 import 'package:spotify_clone/core/config/theme/app_colors.dart';
 import 'package:spotify_clone/presentation/features/choosemode/manager/cubit/theme_cubit.dart';
@@ -28,7 +29,7 @@ class _ChooseModeWidgetState extends State<ChooseModeWidget> {
 
   @override
   Widget build(BuildContext context) {
-    activeOption = context.read<ThemeCubit>().state == ThemeMode.dark ? 0 : 1;
+    activeOption = isLightMode(context) ? 1 : 0;
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [

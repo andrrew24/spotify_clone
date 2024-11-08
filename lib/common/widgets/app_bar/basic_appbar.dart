@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:spotify_clone/common/helper/is_dark_mode.dart';
+import 'package:spotify_clone/core/config/theme/app_colors.dart';
 import 'package:spotify_clone/presentation/features/choosemode/manager/cubit/theme_cubit.dart';
 
 class BasicAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -44,15 +46,19 @@ class BasicAppBar extends StatelessWidget implements PreferredSizeWidget {
           height: 40,
           width: 40,
           decoration: BoxDecoration(
-            color: hasBG ? Colors.white.withOpacity(0.03) : Colors.transparent,
+            color: hasBG
+                ? isLightMode(context)
+                    ? AppColors.lightGrey
+                    : Colors.white.withOpacity(0.03)
+                : Colors.transparent,
             shape: BoxShape.circle,
           ),
           child: Icon(
             leadinIcon,
             size: 15,
-            color: BlocProvider.of<ThemeCubit>(context).state == ThemeMode.light
-                ? Colors.black
-                : Colors.white,
+            color: isLightMode(context)
+                ? AppColors.darkGrey
+                : AppColors.lightBackground,
           ),
         ),
       ),
