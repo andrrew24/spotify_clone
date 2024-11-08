@@ -72,6 +72,32 @@ Before starting, make sure you have the following installed:
 
 ---
 
+### Configure Environment Variables
+
+1. **Create a `.env` file**:
+
+    In the root of the project, create a `.env` file if it doesn't already exist.
+
+2. **Add the following variables to the `.env` file**:
+
+    ```env
+    LOCAL_HOST=your_local_host_without_quotes
+    SONG_COLLECTION_ID=your_song_collection_id_without_quotes
+    ```
+
+    - Replace `your_local_host_without_quotes` with your PocketBase server's base URL (e.g., `http://localhost:8090`).
+    - Replace `your_song_collection_id_without_quotes` with the **collection ID** of the "Songs" collection in your PocketBase admin dashboard.
+
+3. **Ensure `.env` is excluded from version control**:
+
+    The `.env` file should already be ignored by `.gitignore`, but double-check to ensure sensitive information is not committed.
+
+4. **Load the `.env` file in the app**:
+
+    The app is pre-configured to use the `flutter_dotenv` package. The variables from the `.env` file will be automatically loaded when the app starts.
+
+---
+
 ## 🚀 Running the App
 
 1. **Run the Flutter app on your device**:
@@ -80,18 +106,13 @@ Before starting, make sure you have the following installed:
     flutter run
     ```
 
-    Make sure your PocketBase server is running and accessible at `http://localhost:8090`.
-
-2. **Configure the PocketBase URL**:
-
-    Modify the PocketBase server URL in the Flutter app's configuration file (e.g., `lib/config.dart`) to match your local server or any remote server.
+    Ensure your PocketBase server is running and accessible at the URL specified in the `.env` file.
 
 ---
 
 ## 📱 Screenshots
 
 ![App Preview Banner](assets/banner/app_banner.png)
-
 
 ---
 
@@ -104,4 +125,3 @@ Contributions, issues, and feature requests are welcome! Feel free to check out 
 ## 📜 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
