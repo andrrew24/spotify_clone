@@ -4,11 +4,11 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 import 'package:spotify_clone/common/helper/format_duration.dart';
+import 'package:spotify_clone/common/helper/service_locator.dart';
 import 'package:spotify_clone/core/config/constants/app_const.dart';
 import 'package:spotify_clone/core/config/assets/app_styles.dart';
 import 'package:spotify_clone/core/config/theme/app_colors.dart';
 import 'package:spotify_clone/common/widgets/app_bar/basic_appbar.dart';
-import 'package:spotify_clone/core/constants/const.dart';
 import 'package:spotify_clone/domain/entities/song_entity.dart';
 import 'package:spotify_clone/presentation/features/home/widgets/fav_button.dart';
 import 'package:spotify_clone/presentation/features/play_song/manager/play_song_cubit/play_song_cubit.dart';
@@ -21,16 +21,15 @@ class PlaySongPage extends StatelessWidget {
     final state = GoRouterState.of(context);
     final song = state.extra as SongEntity;
     return BlocProvider(
-       create: (context) => PlaySongCubit()
-          ..loadSong(
-            "${AppConstants.appApi}${song.id}/${song.songLink}",
-          )
-          ..playOrPauseSong(),
+      create: (context) => PlaySongCubit()
+        ..loadSong(
+          "$appApi${song.id}/${song.songLink}",
+        )
+        ,
       child: Scaffold(
         appBar: BasicAppBar(
           leadingonPressed: () {
-            GoRouter.of(context).pushReplacement(kHomePage);
-      
+            GoRouter.of(context).pushReplacement(AppConstants.kHomePage);
           },
           hasBG: true,
           leadinIcon: Icons.arrow_back_ios_new_rounded,
@@ -51,13 +50,14 @@ class PlaySongPage extends StatelessWidget {
                       image: DecorationImage(
                           fit: BoxFit.cover,
                           image: NetworkImage(
-                              "${AppConstants.appApi}${song.id}/${song.coverLink}"))),
+                              "$appApi${song.id}/${song.coverLink}"))),
                 ),
                 const Gap(20),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
                           song.title,
@@ -65,6 +65,7 @@ class PlaySongPage extends StatelessWidget {
                         ),
                         Text(
                           song.artist,
+                          textAlign: TextAlign.start,
                           style: AppStyles.styleRegular17(),
                         ),
                       ],

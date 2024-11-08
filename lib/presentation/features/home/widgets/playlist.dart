@@ -6,8 +6,8 @@ import 'package:go_router/go_router.dart';
 import 'package:spotify_clone/common/helper/is_dark_mode.dart';
 import 'package:spotify_clone/common/helper/service_locator.dart';
 import 'package:spotify_clone/core/config/assets/app_styles.dart';
+import 'package:spotify_clone/core/config/constants/app_const.dart';
 import 'package:spotify_clone/core/config/theme/app_colors.dart';
-import 'package:spotify_clone/core/constants/const.dart';
 import 'package:spotify_clone/domain/entities/song_entity.dart';
 import 'package:spotify_clone/domain/usecases/song/get_playlist_use_case.dart';
 import 'package:spotify_clone/presentation/features/home/manager/get_playlist_cubit/get_play_list_cubit.dart';
@@ -62,7 +62,7 @@ class Playlist extends StatelessWidget {
       itemBuilder: (context, index) {
         return ListTile(
           onTap: () {
-            GoRouter.of(context).push(kPlaySongPage, extra: songs[index]);
+            GoRouter.of(context).push(AppConstants.kPlaySongPage, extra: songs[index]);
           },
           leading: Container(
             height: 40,

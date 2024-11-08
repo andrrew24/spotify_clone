@@ -6,7 +6,6 @@ import 'package:spotify_clone/common/helper/is_dark_mode.dart';
 import 'package:spotify_clone/common/helper/service_locator.dart';
 import 'package:spotify_clone/core/config/assets/app_styles.dart';
 import 'package:spotify_clone/core/config/theme/app_colors.dart';
-import 'package:spotify_clone/core/constants/const.dart';
 import 'package:spotify_clone/domain/entities/song_entity.dart';
 import 'package:spotify_clone/domain/usecases/song/get_new_song_usecase.dart';
 import 'package:spotify_clone/presentation/features/home/manager/get_new_songs_cubit/get_new_songs_cubit.dart';
@@ -42,7 +41,7 @@ class NewSongsList extends StatelessWidget {
         itemBuilder: (context, index) {
           return GestureDetector(
             onTap: () {
-              GoRouter.of(context).push(kPlaySongPage, extra: songs[index]);
+              GoRouter.of(context).push(AppConstants.kPlaySongPage, extra: songs[index]);
             },
             child: SizedBox(
               width: 140,
@@ -56,7 +55,7 @@ class NewSongsList extends StatelessWidget {
                         image: DecorationImage(
                           fit: BoxFit.cover,
                           image: NetworkImage(
-                            "${AppConstants.appApi}${songs[index].id}/${songs[index].coverLink}",
+                            "$appApi${songs[index].id}/${songs[index].coverLink}",
                           ),
                         ),
                       ),

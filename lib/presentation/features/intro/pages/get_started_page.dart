@@ -6,7 +6,7 @@ import 'package:spotify_clone/common/widgets/button/basic_app_button.dart';
 import 'package:spotify_clone/core/config/assets/app_styles.dart';
 import 'package:spotify_clone/core/config/assets/images.dart';
 import 'package:spotify_clone/core/config/assets/vectors.dart';
-import 'package:spotify_clone/core/constants/const.dart';
+import 'package:spotify_clone/core/config/constants/app_const.dart';
 
 class GetStartedPage extends StatelessWidget {
   const GetStartedPage({super.key});
@@ -42,7 +42,7 @@ class GetStartedPage extends StatelessWidget {
             BasicAppButton(
                 title: "Get Started",
                 onPressed: () {
-                  GoRouter.of(context).push(kchooseMode);
+                  GoRouter.of(context).push(AppConstants.kchooseMode);
                 })
           ],
         ),

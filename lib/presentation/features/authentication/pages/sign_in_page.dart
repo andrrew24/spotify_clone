@@ -4,8 +4,8 @@ import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 import 'package:spotify_clone/core/config/assets/app_styles.dart';
 import 'package:spotify_clone/core/config/assets/vectors.dart';
+import 'package:spotify_clone/core/config/constants/app_const.dart';
 import 'package:spotify_clone/core/config/theme/app_colors.dart';
-import 'package:spotify_clone/core/constants/const.dart';
 import 'package:spotify_clone/presentation/features/authentication/widgets/signin_form.dart';
 import 'package:spotify_clone/common/widgets/app_bar/basic_appbar.dart';
 
@@ -64,7 +64,7 @@ class SignInPage extends StatelessWidget {
                   const Text("Not A Member ?"),
                   TextButton(
                       onPressed: () {
-                        GoRouter.of(context).pushReplacement(kRegisterPage);
+                        GoRouter.of(context).pushReplacement(AppConstants.kRegisterPage);
                       },
                       child: Text(
                         "Register Now",

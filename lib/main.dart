@@ -1,4 +1,5 @@
 import 'package:flutter/foundation.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -22,14 +23,16 @@ import 'package:spotify_clone/presentation/features/home/pages/home_page.dart';
 void main() async {
   await Hive.initFlutter();
   await Hive.openBox(AppConstants.kAuth);
+  // load variables in .env file (placed in the root project folder)
+  await dotenv.load(fileName: ".env");
   WidgetsFlutterBinding.ensureInitialized();
   HydratedBloc.storage = await HydratedStorage.build(
       storageDirectory: kIsWeb
           ? HydratedStorage.webStorageDirectory
           : await getApplicationCacheDirectory());
   Bloc.observer = SimpleBlocObserver();
- await init();
- await initDependences();
+  await initPocketBase();
+  await initDependences();
   runApp(const SpotifyClone());
 }
 

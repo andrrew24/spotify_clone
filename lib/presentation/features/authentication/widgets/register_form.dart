@@ -4,8 +4,8 @@ import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 import 'package:spotify_clone/common/functions/fuctions.dart';
 import 'package:spotify_clone/common/widgets/button/basic_app_button.dart';
+import 'package:spotify_clone/core/config/constants/app_const.dart';
 import 'package:spotify_clone/core/config/theme/app_colors.dart';
-import 'package:spotify_clone/core/constants/const.dart';
 import 'package:spotify_clone/data/models/auth/create_user_model.dart';
 import 'package:spotify_clone/presentation/features/authentication/manager/register/cubit/register_cubit.dart';
 import 'package:spotify_clone/presentation/features/authentication/widgets/custom_text_field.dart';
@@ -36,7 +36,7 @@ class _RegisterFormState extends State<RegisterForm> {
         }
         if (state is RegisterSuccess) {
           isLoading = false;
-          GoRouter.of(context).pushReplacement(kHomePage);
+          GoRouter.of(context).pushReplacement(AppConstants.kHomePage);
         }
       },
       builder: (context, state) {

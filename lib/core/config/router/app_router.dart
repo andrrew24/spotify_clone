@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:pocketbase/pocketbase.dart';
 import 'package:spotify_clone/common/helper/service_locator.dart';
-import 'package:spotify_clone/core/constants/const.dart';
+import 'package:spotify_clone/core/config/constants/app_const.dart';
 import 'package:spotify_clone/domain/usecases/auth/login_usecase.dart';
 import 'package:spotify_clone/domain/usecases/auth/register_usecase.dart';
 import 'package:spotify_clone/domain/usecases/song/get_new_song_usecase.dart';
@@ -20,34 +20,34 @@ import 'package:spotify_clone/presentation/features/play_song/pages/play_song_pa
 import 'package:spotify_clone/presentation/features/splash/pages/splash_page.dart';
 
 final GoRouter appRouter = GoRouter(
-  initialLocation: pb.authStore.isValid ? kHomePage : kSplash,
+  initialLocation: pb.authStore.isValid ? AppConstants.kHomePage : AppConstants.kSplash,
   routes: <RouteBase>[
     GoRoute(
-      path: kSplash,
+      path: AppConstants.kSplash,
       builder: (BuildContext context, GoRouterState state) {
         return const SplashPage();
       },
     ),
     GoRoute(
-      path: kgetStarted,
+      path: AppConstants.kgetStarted,
       builder: (BuildContext context, GoRouterState state) {
         return const GetStartedPage();
       },
     ),
     GoRoute(
-      path: kchooseMode,
+      path: AppConstants.kchooseMode,
       builder: (BuildContext context, GoRouterState state) {
         return const ChooseModePage();
       },
     ),
     GoRoute(
-      path: kRegisterOrSignup,
+      path: AppConstants.kRegisterOrSignup,
       builder: (BuildContext context, GoRouterState state) {
         return const RegisterOrSignupPage();
       },
     ),
     GoRoute(
-      path: kSignInPage,
+      path: AppConstants.kSignInPage,
       builder: (BuildContext context, GoRouterState state) {
         return BlocProvider(
             create: (context) => LoginCubit(serviceLocator<LoginUsecase>()),
@@ -55,7 +55,7 @@ final GoRouter appRouter = GoRouter(
       },
     ),
     GoRoute(
-      path: kRegisterPage,
+      path: AppConstants.kRegisterPage,
       builder: (BuildContext context, GoRouterState state) {
         return BlocProvider(
             create: (context) =>
@@ -64,13 +64,13 @@ final GoRouter appRouter = GoRouter(
       },
     ),
     GoRoute(
-      path: kHomePage,
+      path: AppConstants.kHomePage,
       builder: (BuildContext context, GoRouterState state) {
         return const HomePage();
       },
     ),
     GoRoute(
-      path: kPlaySongPage,
+      path: AppConstants.kPlaySongPage,
       builder: (BuildContext context, GoRouterState state) {
         return const PlaySongPage();
       },

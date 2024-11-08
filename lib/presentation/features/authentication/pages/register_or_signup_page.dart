@@ -8,8 +8,8 @@ import 'package:spotify_clone/common/widgets/button/basic_app_button.dart';
 import 'package:spotify_clone/core/config/assets/app_styles.dart';
 import 'package:spotify_clone/core/config/assets/images.dart';
 import 'package:spotify_clone/core/config/assets/vectors.dart';
-import 'package:spotify_clone/core/constants/const.dart';
 import 'package:spotify_clone/common/widgets/app_bar/basic_appbar.dart';
+import 'package:spotify_clone/core/config/constants/app_const.dart';
 import 'package:spotify_clone/domain/usecases/auth/login_usecase.dart';
 import 'package:spotify_clone/domain/usecases/auth/register_usecase.dart';
 import 'package:spotify_clone/presentation/features/authentication/manager/login/cubit/login_cubit.dart';
@@ -71,14 +71,14 @@ class RegisterOrSignupPage extends StatelessWidget {
                       child: BasicAppButton(
                         title: "Register",
                         onPressed: () {
-                          GoRouter.of(context).push(kRegisterPage);
+                          GoRouter.of(context).push(AppConstants.kRegisterPage);
                         },
                       ),
                     ),
                     const Gap(90),
                     TextButton(
                         onPressed: () {
-                          GoRouter.of(context).push(kSignInPage);
+                          GoRouter.of(context).push(AppConstants.kSignInPage);
                         },
                         child:
                             Text("Sign in", style: AppStyles.styleMedium19()))

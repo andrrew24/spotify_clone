@@ -1,3 +1,4 @@
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get_it/get_it.dart';
 import 'package:pocketbase/pocketbase.dart';
 import 'package:spotify_clone/core/config/constants/app_const.dart';
@@ -23,7 +24,11 @@ final serviceLocator = GetIt.instance;
 
 late PocketBase pb;
 
-Future<void> init() async {
+String baseUrl = dotenv.env['LOCAL_HOST'] ?? '';
+String songCollectionId = dotenv.env['SONG_COLLECTION_ID'] ?? '';
+String appApi = "$baseUrl/api/files/$songCollectionId/";
+
+Future<void> initPocketBase() async {
   final localStorage = AuthLocalDataSourceImpl();
   final token = await localStorage.getToken();
 
@@ -33,7 +38,7 @@ Future<void> init() async {
     save: localStorage.setToken,
   );
 
-  pb = PocketBase(AppConstants.baseUrl, authStore: customAuthStore);
+  pb = PocketBase(baseUrl, authStore: customAuthStore);
 }
 
 Future<void> initDependences() async {
