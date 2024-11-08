@@ -29,7 +29,8 @@ class _RegisterFormState extends State<RegisterForm> {
       listener: (context, state) {
         if (state is RegisterFailure) {
           isLoading = false;
-
+          ScaffoldMessenger.of(context)
+              .showSnackBar(SnackBar(content: Text(state.errorMessage)));
         }
         if (state is RegisterLoading) {
           isLoading = true;
@@ -47,19 +48,22 @@ class _RegisterFormState extends State<RegisterForm> {
             children: [
               CustomTextField(
                 hintText: "Full Name",
+                obsecureText: false,
                 controller: nameController,
-                validator: (value) => validateName(value),
+                validator: (name) => validateName(name),
               ),
               const Gap(25),
               CustomTextField(
                 hintText: "Enter Email",
                 controller: emailController,
+                obsecureText: false,
                 validator: (value) => validateEmail(value),
               ),
               const Gap(25),
               CustomTextField(
                 hintText: "Password",
                 controller: passwordController,
+                obsecureText: true,
                 validator: (value) => validatePassword(value),
               ),
               const Gap(25),

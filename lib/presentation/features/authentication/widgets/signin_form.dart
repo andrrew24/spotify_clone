@@ -38,6 +38,8 @@ class _SigninFormState extends State<SigninForm> {
       listener: (context, state) {
         if (state is LoginFailure) {
           isLoading = false;
+          ScaffoldMessenger.of(context)
+              .showSnackBar(SnackBar(content: Text(state.errorMessage)));
         }
         if (state is LoginLoading) {
           isLoading = true;
@@ -49,18 +51,23 @@ class _SigninFormState extends State<SigninForm> {
       },
       builder: (context, state) {
         return Form(
+          autovalidateMode: AutovalidateMode.onUserInteraction,
           key: formKey,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               CustomTextField(
                 hintText: "Enter email or name",
+                obsecureText: false,
                 controller: emailController,
+                validator: (email) => validateEmail(email),
               ),
               const Gap(15),
               CustomTextField(
                 hintText: "Password",
+                obsecureText: true,
                 controller: passwordController,
+                validator: (password) => validatePassword(password),
               ),
               const Gap(20),
               Align(
