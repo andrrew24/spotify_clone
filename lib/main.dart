@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:path_provider/path_provider.dart';
@@ -26,7 +27,6 @@ void main() async {
   await Hive.openBox(AppConstants.kAuth);
   // load variables in .env file (placed in the root project folder)
   await dotenv.load(fileName: ".env");
-  WidgetsFlutterBinding.ensureInitialized();
   // used hydrated bloc to save theme mode state
   HydratedBloc.storage = await HydratedStorage.build(
       storageDirectory: kIsWeb
@@ -38,6 +38,13 @@ void main() async {
   await initPocketBase();
   // initialize app dependencies
   await initDependences();
+
+  WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
+  await Future.delayed(
+    const Duration(seconds: 0),
+  );
+  FlutterNativeSplash.remove();
   runApp(const SpotifyClone());
 }
 

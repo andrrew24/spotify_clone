@@ -20,7 +20,7 @@ import 'package:spotify_clone/presentation/features/play_song/pages/play_song_pa
 import 'package:spotify_clone/presentation/features/splash/pages/splash_page.dart';
 
 final GoRouter appRouter = GoRouter(
-  initialLocation: pb.authStore.isValid ? AppConstants.kHomePage : AppConstants.kSplash,
+  initialLocation: pb.authStore.isValid ? AppConstants.kHomePage : AppConstants.kgetStarted,
   routes: <RouteBase>[
     GoRoute(
       path: AppConstants.kSplash,
