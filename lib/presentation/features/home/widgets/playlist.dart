@@ -92,12 +92,12 @@ class Playlist extends StatelessWidget {
           trailing: SizedBox(
             width: 90,
             child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
                   songs[index].duration.toStringAsFixed(2).replaceAll('.', ':'),
                   style: AppStyles.styleRegular15(),
                 ),
-                const Gap(5),
                 FavButton(
                   song: songs[index],
                 )
