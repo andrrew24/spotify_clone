@@ -15,7 +15,7 @@ class SongRemoteDataSourceImpl extends SongRemoteDataSource {
       final body = await pb.collection('songs').getList(
         sort: '-created',
         page: 1,
-        perPage: 3,
+        perPage: 5,
         headers: {
           'Authorization': 'Bearer ${pb.authStore.token}',
         },

@@ -39,6 +39,7 @@ void main() async {
   // initialize app dependencies
   await initDependences();
 
+  //configs for native splash screen
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   await Future.delayed(
